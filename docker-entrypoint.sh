@@ -22,39 +22,34 @@ ConfigureSsmtp () {
   fi
 }
 
-ConfigureGroup () {
+ConfigureUser () {
+  # Managing user
+  if [ -n "${DOCKUID}" ]; then
+    MYUID="${DOCKUID}"
+  fi
   # Managing group
   if [ -n "${DOCKGID}" ]; then
     MYGID="${DOCKGID}"
   fi
+  local OLDHOME
+  local OLDUID=$(/usr/bin/id -u "${MYUSER}")
+  if [ $? -eq 0 ] && [ "${DOCKUID}" != "${OLDUID}" ]; then
+    OLDHOME=$(/bin/echo "~${MYUSER}") 
+    /usr/sbin/deluser "${MYUSER}"
+    /usr/bin/logger "Deleted user ${MYUSER}"
+  fi  
   local OLDGID=$(/usr/bin/id -g "${MYUSER}")
   if [ $? -eq 0 ] && [ "${DOCKGID}" != "${OLDGID}" ]; then
     /usr/sbin/delgroup "${MYUSER}"
     /usr/bin/logger "Deleted group ${MYUSER}"
   fi
   /usr/sbin/addgroup -S -g "${MYGID}" "${MYUSER}"
-  if [ -n "${OLDGID}" ] && [ "${DOCKGID}" != "${OLDGID}" ]; then
-    /usr/bin/find / -group "${OLDGID}" -exec /bin/chgrp ${MYUSER} {} \;
-  fi
-
-}
-
-ConfigureUser () {
-  ConfigureGroup
-  # Managing user
-  if [ -n "${DOCKUID}" ]; then
-    MYUID="${DOCKUID}"
-  fi
-  local OLDHOME
-  local OLDUID=$(/usr/bin/id -u "${MYUSER}")
-  if [ $? -eq 0 ] && [ "${DOCKUID}" != "${OLDUID}" ]; then
-    OLDHOME=$(echo "~${MYUSER}") 
-    /usr/sbin/deluser "${MYUSER}"
-    /usr/bin/logger "Deleted user ${MYUSER}"
-  fi  
   /usr/sbin/adduser -S -D -H -s /sbin/nologin -G "${MYUSER}" -h "${OLDHOME}" -u "${MYUID}" "${MYUSER}"
   if [ -n "${OLDUID}" ] && [ "${DOCKUID}" != "${OLDUID}" ]; then
     /usr/bin/find / -user "${OLDUID}" -exec /bin/chown ${MYUSER} {} \;
+  fi
+  if [ -n "${OLDGID}" ] && [ "${DOCKGID}" != "${OLDGID}" ]; then
+    /usr/bin/find / -group "${OLDGID}" -exec /bin/chgrp ${MYUSER} {} \;
   fi
 }
 

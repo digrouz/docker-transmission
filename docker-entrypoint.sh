@@ -28,12 +28,12 @@ ConfigureGroup () {
     MYGID="${DOCKGID}"
   fi
   local OLDGID=$(/usr/bin/id -g "${MYUSER}")
-  if [ $? -eq 0 && "${DOCKGID}" != "${OLDGID}" ]; then
+  if [ $? -eq 0 ] && [ "${DOCKGID}" != "${OLDGID}" ]; then
     /usr/sbin/delgroup "${MYUSER}"
     /usr/bin/logger "Deleted group ${MYUSER}"
   fi
   /usr/sbin/addgroup -S -g "${MYGID}" "${MYUSER}"
-  if [ -n "${OLDGID}" && "${DOCKGID}" != "${OLDGID}" ]; then
+  if [ -n "${OLDGID}" ] && [ "${DOCKGID}" != "${OLDGID}" ]; then
     /usr/bin/find / -group "${OLDGID}" -exec /bin/chgrp ${MYUSER} {} \;
   fi
 
@@ -47,13 +47,13 @@ ConfigureUser () {
   fi
   local OLDHOME
   local OLDUID=$(/usr/bin/id -u "${MYUSER}")
-  if [ $? -eq 0 && "${DOCKUID}" != "${OLDUID}" ]; then
+  if [ $? -eq 0 ] && [ "${DOCKUID}" != "${OLDUID}" ]; then
     OLDHOME=$(echo "~${MYUSER}") 
     /usr/sbin/deluser "${MYUSER}"
     /usr/bin/logger "Deleted user ${MYUSER}"
   fi  
   /usr/sbin/adduser -S -D -H -s /sbin/nologin -G "${MYUSER}" -h "${OLDHOME}" -u "${MYUID}" "${MYUSER}"
-  if [ -n "${OLDUID}" && "${DOCKUID}" != "${OLDUID}" ]; then
+  if [ -n "${OLDUID}" ] && [ "${DOCKUID}" != "${OLDUID}" ]; then
     /usr/bin/find / -user "${OLDUID}" -exec /bin/chown ${MYUSER} {} \;
   fi
 }

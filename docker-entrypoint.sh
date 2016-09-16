@@ -32,17 +32,24 @@ ConfigureUser () {
     MYGID="${DOCKGID}"
   fi
   local OLDHOME
-  local OLDUID=$(/usr/bin/id -u "${MYUSER}")
-  if [ $? -eq 0 ] && [ "${DOCKUID}" != "${OLDUID}" ]; then
-    OLDHOME=$(/bin/echo "~${MYUSER}") 
-    /usr/sbin/deluser "${MYUSER}"
-    /usr/bin/logger "Deleted user ${MYUSER}"
+  local OLDGID
+  local OLDUID
+  if [ /bin/grep -q "${MYUSER}" /etc/passwd ]; then
+    OLDUID=$(/usr/bin/id -u "${MYUSER}")
+    OLDGID=$(/usr/bin/id -g "${MYUSER}")
+    if [ "${DOCKUID}" != "${OLDUID}" ]; then
+      OLDHOME=$(/bin/echo "~${MYUSER}") 
+      /usr/sbin/deluser "${MYUSER}"
+      /usr/bin/logger "Deleted user ${MYUSER}"
+    fi
+    if [ /bin/grep -q "${MYUSER}" /etc/group ]; then
+      local OLDGID=$(/usr/bin/id -g "${MYUSER}")
+      if [ "${DOCKGID}" != "${OLDGID}" ]; then
+        /usr/sbin/delgroup "${MYUSER}"
+        /usr/bin/logger "Deleted group ${MYUSER}"
+      fi
+    fi 
   fi  
-  local OLDGID=$(/usr/bin/id -g "${MYUSER}")
-  if [ $? -eq 0 ] && [ "${DOCKGID}" != "${OLDGID}" ]; then
-    /usr/sbin/delgroup "${MYUSER}"
-    /usr/bin/logger "Deleted group ${MYUSER}"
-  fi
   /usr/sbin/addgroup -S -g "${MYGID}" "${MYUSER}"
   /usr/sbin/adduser -S -D -H -s /sbin/nologin -G "${MYUSER}" -h "${OLDHOME}" -u "${MYUID}" "${MYUSER}"
   if [ -n "${OLDUID}" ] && [ "${DOCKUID}" != "${OLDUID}" ]; then

@@ -22,7 +22,7 @@ https://www.transmissionbt.com/
       -v /etc/localtime:/etc/localtime:ro   \
       -p 9091:9091  \
       -p 9092:9092  \
-      -p 9092:9092/udp  digrouz/docker-deb-transmission
+      -p 9092:9092/udp  digrouz/docker-alp-transmission
 
 
 

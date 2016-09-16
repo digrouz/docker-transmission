@@ -4,7 +4,7 @@ local MYUSER="transmission"
 local MYGID="10003"
 local MYUID="10003"
 
-function ConfigureSsmtp {
+ConfigureSsmtp () {
   # Customizing sstmp
   if [ -f /etc/ssmtp/ssmtp.conf ];then
     # Configure relay
@@ -22,7 +22,7 @@ function ConfigureSsmtp {
   fi
 }
 
-function ConfigureGroup {
+ConfigureGroup () {
   # Managing group
   if [ -n "${DOCKGID}" ]; then
     MYGID="${DOCKGID}"
@@ -39,7 +39,7 @@ function ConfigureGroup {
 
 }
 
-function ConfigureUser {
+ConfigureUser () {
   ConfigureGroup
   # Managing user
   if [ -n "${DOCKUID}" ]; then

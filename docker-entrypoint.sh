@@ -1,6 +1,6 @@
 #!/bin/sh
 set -e
-local MYUSER="mytransmission"
+local MYUSER="transmission"
 local MYGID="10003"
 local MYUID="10003"
 
@@ -22,25 +22,46 @@ function ConfigureSsmtp {
   fi
 }
 
-# Managing group
-if [ -n "${DOCKGID}" ]; then
-  MYGID="${DOCKGID}"
-fi
-if ! /bin/grep -q "${MYUSER}" /etc/group; then
+function ConfigureGroup {
+  # Managing group
+  if [ -n "${DOCKGID}" ]; then
+    MYGID="${DOCKGID}"
+  fi
+  local OLDGID=$(/usr/bin/id -g "${MYUSER}")
+  if [ $? -eq 0 && "${DOCKGID}" != "${OLDGID}" ]; then
+    /usr/sbin/delgroup "${MYUSER}"
+    /usr/bin/logger "Deleted group ${MYUSER}"
+  fi
   /usr/sbin/addgroup -S -g "${MYGID}" "${MYUSER}"
-fi
+  if [ -n "${OLDGID}" && "${DOCKGID}" != "${OLDGID}" ]; then
+    /usr/bin/find / -group "${OLDGID}" -exec /bin/chgrp ${MYUSER} {} \;
+  fi
 
-# Managing user
-if [ -n "${DOCKUID}" ]; then
-  MYUID="${DOCKUID}"
-fi
-if ! /bin/grep -q "${MYUSER}" /etc/passwd; then
-  /usr/sbin/adduser -S -D -H -G "${MYUSER}" -u "${MYUID}" "${MYUSER}"
-fi
+}
 
+function ConfigureUser {
+  ConfigureGroup
+  # Managing user
+  if [ -n "${DOCKUID}" ]; then
+    MYUID="${DOCKUID}"
+  fi
+  local OLDHOME
+  local OLDUID=$(/usr/bin/id -u "${MYUSER}")
+  if [ $? -eq 0 && "${DOCKUID}" != "${OLDUID}" ]; then
+    OLDHOME=$(echo "~${MYUSER}") 
+    /usr/sbin/deluser "${MYUSER}"
+    /usr/bin/logger "Deleted user ${MYUSER}"
+  fi  
+  /usr/sbin/adduser -S -D -H -s /sbin/nologin -G "${MYUSER}" -h "${OLDHOME}" -u "${MYUID}" "${MYUSER}"
+  if [ -n "${OLDUID}" && "${DOCKUID}" != "${OLDUID}" ]; then
+    /usr/bin/find / -user "${OLDUID}" -exec /bin/chown ${MYUSER} {} \;
+  fi
+}
+
+ConfigureUser
 ConfigureSsmtp
 
-if [ "$1" = 'transmission' ]; then
+if [ "$1" == 'transmission' ]; then
     if [ -d /config ]; then
       chown -R "${MYUSER}":"${MYUSER}" /config
       chmod 0775 /config

@@ -11,6 +11,8 @@ ENV LANG='en_US.UTF-8' \
 RUN apk upgrade --no-cache && \
     apk add --no-cache --virtual=run-deps \
       su-exec \
+      sstmp \
+      mailx \
       transmission-daemon && \
     rm -rf /tmp/* \
            /var/cache/apk/*  \

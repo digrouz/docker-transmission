@@ -34,22 +34,24 @@ ConfigureUser () {
   local OLDHOME
   local OLDGID
   local OLDUID
-  if [ /bin/grep -q "${MYUSER}" /etc/passwd ]; then
+  /bin/grep -q "${MYUSER}" /etc/passwd
+  if [ $? -eq 0 ]; then
     OLDUID=$(/usr/bin/id -u "${MYUSER}")
     OLDGID=$(/usr/bin/id -g "${MYUSER}")
     if [ "${DOCKUID}" != "${OLDUID}" ]; then
-      OLDHOME=$(/bin/echo "~${MYUSER}") 
+      OLDHOME=$(/bin/echo "~${MYUSER}")
       /usr/sbin/deluser "${MYUSER}"
       /usr/bin/logger "Deleted user ${MYUSER}"
     fi
-    if [ /bin/grep -q "${MYUSER}" /etc/group ]; then
+    /bin/grep -q "${MYUSER}" /etc/group
+    if [ $? -eq 0 ]; then
       local OLDGID=$(/usr/bin/id -g "${MYUSER}")
       if [ "${DOCKGID}" != "${OLDGID}" ]; then
         /usr/sbin/delgroup "${MYUSER}"
         /usr/bin/logger "Deleted group ${MYUSER}"
       fi
-    fi 
-  fi  
+    fi
+  fi
   /usr/sbin/addgroup -S -g "${MYGID}" "${MYUSER}"
   /usr/sbin/adduser -S -D -H -s /sbin/nologin -G "${MYUSER}" -h "${OLDHOME}" -u "${MYUID}" "${MYUSER}"
   if [ -n "${OLDUID}" ] && [ "${DOCKUID}" != "${OLDUID}" ]; then

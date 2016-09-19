@@ -1,5 +1,5 @@
 #!/bin/sh
-set -x
+set -e
 local MYUSER="transmission"
 local MYGID="10003"
 local MYUID="10003"
@@ -34,8 +34,8 @@ ConfigureUser () {
   local OLDHOME
   local OLDGID
   local OLDUID
-  /bin/grep -q "${MYUSER}" /etc/passwd
-  if [ $? -eq 0 ]; then
+  local USEREXISTS=$(/bin/grep -q "${MYUSER}" /etc/passwd)
+  if [ $USEREXISTS -eq 0 ]; then
     OLDUID=$(/usr/bin/id -u "${MYUSER}")
     OLDGID=$(/usr/bin/id -g "${MYUSER}")
     if [ "${DOCKUID}" != "${OLDUID}" ]; then
@@ -43,8 +43,8 @@ ConfigureUser () {
       /usr/sbin/deluser "${MYUSER}"
       /usr/bin/logger "Deleted user ${MYUSER}"
     fi
-    /bin/grep -q "${MYUSER}" /etc/group
-    if [ $? -eq 0 ]; then
+    local GROUPEXISTS=$(/bin/grep -q "${MYUSER}" /etc/group)
+    if [ $GROUPEXISTS -eq 0 ]; then
       local OLDGID=$(/usr/bin/id -g "${MYUSER}")
       if [ "${DOCKGID}" != "${OLDGID}" ]; then
         /usr/sbin/delgroup "${MYUSER}"

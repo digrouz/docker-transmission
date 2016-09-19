@@ -29,5 +29,5 @@ EXPOSE 9091 9092/tcp 9092/udp
 
 ### Start transmission
 COPY ./docker-entrypoint.sh /
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["transmission"]
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+#CMD ["transmission"]

@@ -1,5 +1,5 @@
 #!/bin/sh
-set -e
+set -x
 local MYUSER="transmission"
 local MYGID="10003"
 local MYUID="10003"

@@ -1,5 +1,5 @@
 # docker-alp-transmission
-Installs Transmission into an Alpine container
+Installs Transmission into an Alpine container. It supports mail notifications through `ssmtp`.
 
 ![transmissionbt](https://upload.wikimedia.org/wikipedia/commons/archive/6/6d/20080126162557%21Transmission_icon.png)
 
@@ -23,6 +23,30 @@ https://www.transmissionbt.com/
       -p 9091:9091  \
       -p 9092:9092  \
       -p 9092:9092/udp  digrouz/docker-alp-transmission
+
+## Environment Variables
+
+When you start the `transmission` image, you can adjust the configuration of the `transmission` instance by passing one or more environment variables on the `docker run` command line.
+
+### `DOCKUID`
+
+This variable is not mandatory and specifies the user id that will be set to run the application. It has default value `10003`.
+
+### `DOCKGID`
+
+This variable is not mandatory and specifies the group id that will be set to run the application. It has default value `10003`.
+
+### `DOCKRELAY`
+
+This variable is not mandatory and specifies the smtp relay that will be used to send email. Do not specify any if mail notifications are not required.
+
+### `DOCKMAIL`
+
+This variable is not mandatory and specifies the mail that has to be used to send email. Do not specify any if mail notifications are not required.
+
+### `DOCKMAILDOMAIN`
+
+This variable is not mandatory and specifies the address where the mail appears to come from for user authentication. Do not specify any if mail notifications are not required.
 
 
 

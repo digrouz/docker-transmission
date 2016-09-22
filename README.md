@@ -22,6 +22,11 @@ https://www.transmissionbt.com/
       -v /etc/localtime:/etc/localtime:ro   \
       -p 9091:9091  \
       -p 9092:9092  \
+      -e DOCKUID=<UID default:10003> \
+      -e DOCKGID=<GID default:10003> \
+      -e DOCKMAIL=<mail address> \
+      -e DOCKRELAY=<smtp relay> \
+      -e DOCKMAILDOMAIN=<originating mail domain> \
       -p 9092:9092/udp  digrouz/docker-alp-transmission
 
 ## Environment Variables

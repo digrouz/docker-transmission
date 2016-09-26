@@ -70,6 +70,17 @@ if [ "$1" == 'transmission' ]; then
       /bin/chown -R "${MYUSER}":"${MYUSER}" /config
       /bin/chmod 0775 /config
     fi
+    if [ ! -f /config/transmission-mail-notification.sh ]; then
+      cat << EOF2 > /config/transmission-mail-notification.sh
+#!/bin/sh
+/bin/mail -s "Transfer completed" root <<EOF
+\${TR_TORRENT_NAME} is finished.This is an automatic message from your friendly transmission-daemon (\${TR_APP_VERSION}). Your files are in \${TR_TORRENT_DIR}.
+EOF
+EOF2
+      /bin/chown -R "${MYUSER}":"${MYUSER}" /config/transmission-mail-notification.sh
+      /bin/chmod 0775 /config/transmission-mail-notification.sh
+    fi
+
     exec /sbin/su-exec "${MYUSER}" /usr/bin/transmission-daemon --foreground --config-dir /config -c /watch -w /downloads -p 9091  -P 9092 --log-error
 fi
 

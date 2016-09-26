@@ -67,8 +67,8 @@ ConfigureSsmtp
 
 if [ "$1" == 'transmission' ]; then
     if [ -d /config ]; then
-      chown -R "${MYUSER}":"${MYUSER}" /config
-      chmod 0775 /config
+      /bin/chown -R "${MYUSER}":"${MYUSER}" /config
+      /bin/chmod 0775 /config
     fi
     exec /sbin/su-exec "${MYUSER}" /usr/bin/transmission-daemon --foreground --config-dir /config -c /watch -w /downloads -p 9091  -P 9092 --log-error
 fi

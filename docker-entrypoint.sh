@@ -73,7 +73,7 @@ if [ "$1" == 'transmission' ]; then
     if [ ! -f /config/transmission-mail-notification.sh ]; then
       cat << EOF2 > /config/transmission-mail-notification.sh
 #!/bin/sh
-/bin/mail -s "Transfer completed" root <<EOF
+/usr/bin/mail -s "Transfer completed" root <<EOF
 \${TR_TORRENT_NAME} is finished.This is an automatic message from your friendly transmission-daemon (\${TR_APP_VERSION}). Your files are in \${TR_TORRENT_DIR}.
 EOF
 EOF2

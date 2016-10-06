@@ -79,6 +79,8 @@ EOF
 EOF2
       /bin/chown -R "${MYUSER}":"${MYUSER}" /config/transmission-mail-notification.sh
       /bin/chmod 0775 /config/transmission-mail-notification.sh
+      /bin/sed -i "s|\ *\"script-torrent-done-enabled\":.*false,|\ \ \ \ \"script-torrent-done-enabled\":\ true,|i" /config/settings.json
+      /bin/sed -i "s|\ *\"script-torrent-done-filename\":.*\"\",|\ \ \ \ \"script-torrent-done-filename\":\ \"/config/transmission-mail-notification.sh\",|i" /config/settings.json
     fi
 
     exec /sbin/su-exec "${MYUSER}" /usr/bin/transmission-daemon --foreground --config-dir /config -c /watch -w /downloads -p 9091  -P 9092 --log-error

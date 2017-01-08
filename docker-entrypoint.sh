@@ -1,8 +1,8 @@
 #!/bin/sh
 
-local MYUSER="transmission"
-local MYGID="10003"
-local MYUID="10003"
+MYUSER="transmission"
+MYGID="10003"
+MYUID="10003"
 
 ConfigureSsmtp () {
   # Customizing sstmp

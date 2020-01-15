@@ -1,0 +1,94 @@
+FROM alpine:3.11
+LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
+
+### Environment variables
+ENV LANG='en_US.UTF-8' \
+    LANGUAGE='en_US.UTF-8' \
+    TERM='xterm' \
+    APPUSER='transmission' \
+    APPUID='10003' \
+    APPGID='10003' \
+    TRANSMISSION_VERSION='2.94'
+
+# Copy config files
+COPY root/ /
+
+### Install Application
+RUN set -x && \
+    chmod 1777 /tmp && \
+    . /usr/local/bin/docker-entrypoint-functions.sh && \
+    MYUSER=${APPUSER} && \
+    MYUID=${APPUID} && \
+    MYGID=${APPGID} && \
+    ConfigureUser && \
+    apk upgrade --no-cache && \
+    apk add --no-cache --virtual=build-deps \
+      automake \
+      curl-dev \
+      curl \
+      gcc \
+      g++ \
+      gettext \
+      intltool \ 
+      libtool \
+      libevent-dev \
+      libressl-dev \
+      m4 \
+      make \
+      miniupnpc-dev \
+      musl-dev \
+    && \
+    curl -SsL  https://github.com/transmission/transmission-releases/raw/master/transmission-${TRANSMISSION_VERSION}.tar.xz -o /tmp/transmission.tar.xz && \
+    tar xJf /tmp/transmission.tar.xz -C /tmp && \
+    cd /tmp/transmission-${TRANSMISSION_VERSION} && \
+    ./configure --enable-nls --enable-cli --prefix=/opt/transmission -q && \
+    make -s && \
+    make install && \
+    curl -SsL https://github.com/Secretmapper/combustion/archive/release.zip -o /tmp/combustion.zip  && \
+    unzip /tmp/combustion.zip -d /opt && \
+    mkdir -p /tmp/twctemp && \
+    TWCVERSION=$(curl -sX GET "https://api.github.com/repos/ronggang/transmission-web-control/releases/latest" \
+	| awk '/tag_name/{print $4;exit}' FS='[""]') \
+    && \
+    curl -SsL https://github.com/ronggang/transmission-web-control/archive/${TWCVERSION}.tar.gz -o /tmp/twc.tar.gz && \
+    tar xf /tmp/twc.tar.gz -C /tmp/twctemp --strip-components=1 && \
+    mv /tmp/twctemp/src /opt/transmission-web-control && \
+    mkdir -p /opt/kettu && \
+    curl -SsL https://github.com/endor/kettu/archive/master.tar.gz -o /tmp/kettu.tar.gz && \
+    tar xf /tmp/kettu.tar.gz -C /opt/kettu --strip-components=1 && \
+    apk del --no-cache --purge \
+      build-deps  \
+    && \
+    apk add --no-cache --virtual=run-deps \
+      p7zip \
+      bash \
+      ca-certificates \
+      jq \
+      libcurl \
+      libevent \
+      mailx \
+      miniupnpc \
+      ssmtp \
+      su-exec \
+      unrar \
+      unzip \
+    && \
+    mkdir -p /docker-entrypoint.d && \
+    chmod +x /usr/local/bin/docker-entrypoint.sh && \
+    ln -snf /usr/local/bin/docker-entrypoint.sh /docker-entrypoint.sh && \
+    rm -rf /tmp/* \
+           /var/cache/apk/*  \
+           /var/tmp/*
+    
+### Volume
+VOLUME ["/config","/downloads","/watch"]
+
+### Expose ports
+EXPOSE 9091 9092/tcp 9092/udp
+
+### Running User: not used, managed by docker-entrypoint.sh
+#USER transmission
+
+### Start transmission
+ENTRYPOINT ["/docker-entrypoint.sh"]
+CMD ["transmission"]

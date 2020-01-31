@@ -3,6 +3,12 @@ Installs Transmission into an Alpine container. It supports mail notifications t
 
 ![transmissionbt](https://upload.wikimedia.org/wikipedia/commons/archive/6/6d/20080126162557%21Transmission_icon.png)
 
+## Tag
+Several tag are available:
+* latest: see alpine
+* alpine: [Dockerfile_alpine](https://github.com/digrouz/docker-transmission/blob/master/Dockerfile_alpine)
+
+
 ## Description
 
 Transmission is a cross-platform BitTorrent client that is:
@@ -53,5 +59,14 @@ This variable is not mandatory and specifies the mail that has to be used to sen
 
 This variable is not mandatory and specifies the address where the mail appears to come from for user authentication. Do not specify any if mail notifications are not required.
 
+### `DOCKUPGRADE`
 
+This variable is not mandatory and specifies if the container has to launch software update at startup or not. Valid values are `0` and `1`. It has default value `0`.
 
+## Notes
+
+* The docker entrypoint can upgrade operating system at each startup. To enable this feature, just add `-e DOCKUPGRADE=1` at container creation.
+
+## Issues
+
+If you encounter an issue please open a ticket at [github](https://github.com/digrouz/docker-transmission/issues)

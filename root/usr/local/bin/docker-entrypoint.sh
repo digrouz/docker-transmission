@@ -16,9 +16,6 @@ if [ "${1}" == 'transmission' ]; then
     chown -R "${MYUSER}":"${MYUSER}" /config
     chmod 0775 /config
   fi
-  DockLog "Configuring mail notifications."
-  sed -i "s|\ *\"script-torrent-done-enabled\":.*false,|\ \ \ \ \"script-torrent-done-enabled\":\ true,|i" /config/settings.json
-  sed -i "s|\ *\"script-torrent-done-filename\":.*\"\",|\ \ \ \ \"script-torrent-done-filename\":\ \"/usr/local/bin/transmission-mail-notification.sh\",|i" /config/settings.json
 
   RunDropletEntrypoint
 

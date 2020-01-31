@@ -1,4 +1,4 @@
-# docker-alp-transmission
+# docker-transmission
 Installs Transmission into an Alpine container. It supports mail notifications through `ssmtp`.
 
 ![transmissionbt](https://upload.wikimedia.org/wikipedia/commons/archive/6/6d/20080126162557%21Transmission_icon.png)
@@ -27,7 +27,7 @@ https://www.transmissionbt.com/
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
       -e DOCKMAILDOMAIN=<originating mail domain> \
-      -p 9092:9092/udp  digrouz/docker-alp-transmission
+      -p 9092:9092/udp  digrouz/docker-transmission
 
 ## Environment Variables
 

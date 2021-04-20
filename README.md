@@ -1,3 +1,7 @@
+[![auto-update-workflow](https://github.com/digrouz/docker-transmission/actions/workflows/auto-update.yml/badge.svg)](https://github.com/digrouz/docker-transmission/actions/workflows/auto-update.yml)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/digrouz/transmission)
+![Docker Pulls](https://img.shields.io/docker/pulls/digrouz/transmission)
+
 # docker-transmission
 Installs Transmission into an Alpine container. It supports mail notifications through `ssmtp`.
 

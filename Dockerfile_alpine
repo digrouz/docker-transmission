@@ -79,7 +79,6 @@ RUN set -x && \
       miniupnpc \
       ssmtp \
       su-exec \
-      unrar \
       unzip \
     && \
     mkdir -p /docker-entrypoint.d && \

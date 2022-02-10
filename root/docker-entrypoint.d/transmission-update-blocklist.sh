@@ -12,7 +12,7 @@ BLOCKLIST_URL=$(jq -r '.["blocklist-url"]' /config/settings.json | sed 's/\&amp;
 
 if [ $BLOCKLIST_ENABLED == true ]; then
   DockLog "Updating blocklists"
-  mkdir /config/blocklists-tmp
+  mkdir -p /config/blocklists-tmp
   wget -q "${BLOCKLIST_URL}" -O /config/blocklists-tmp/blocklist.gz
   if [ $? == 0 ]; then
     cd /config/blocklists-tmp

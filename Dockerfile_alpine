@@ -1,7 +1,7 @@
 FROM alpine:3.17.0
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
-ARG TRANSMISSION_VERSION=''
+ARG TRANSMISSION_VERSION='4.0.0-beta.3'
 
 ### Environment variables
 ENV LANG='en_US.UTF-8' \

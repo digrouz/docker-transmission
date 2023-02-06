@@ -38,7 +38,7 @@ https://www.transmissionbt.com/
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
       -e DOCKMAILDOMAIN=<originating mail domain> \
-      -p 9092:9092/udp  digrouz/docker-transmission
+      -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-set -x
 
-TRANSMISSION_URL="https://api.github.com/repos/transmission/transmission/tags"
+TRANSMISSION_URL="https://api.github.com/repos/transmission/transmission/releases"
 
 FULL_LAST_VERSION=$(curl -SsL ${TRANSMISSION_URL} | \
               jq -r -c '.[] | select( .prerelease == false ) | .tag_name' |\

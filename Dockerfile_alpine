@@ -46,7 +46,7 @@ RUN set -x && \
     && \
     curl -SsL  https://api.github.com/repos/transmission/transmission/tarball/${TRANSMISSION_VERSION} -o /tmp/transmission.tar && \
     tar xf /tmp/transmission.tar -C /tmp && \
-    cd /tmp/transmission-${TRANSMISSION_VERSION} && \
+    cd /tmp/transmission-* && \
     ./configure --enable-nls --enable-cli --enable-utp --with-inotify --prefix=/opt/transmission -q && \
     make -s && \
     make install && \

@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+set -X
 
 TRANSMISSION_URL="https://api.github.com/repos/transmission/transmission/tags"
 

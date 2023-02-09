@@ -32,7 +32,7 @@ RUN set -x && \
       curl-dev \
       curl \
       dbus-glib-dev \
-      libdefalte-dev \
+      libdeflate-dev \
       gcc \
       g++ \
       gettext \

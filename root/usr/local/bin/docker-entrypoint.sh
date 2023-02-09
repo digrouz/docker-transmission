@@ -9,7 +9,6 @@ MYUID="${APPUID}"
 
 AutoUpgrade
 ConfigureUser
-ConfigureSsmtp
 
 if [ "${1}" == 'transmission' ]; then
   if [ -d /config ]; then

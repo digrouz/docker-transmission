@@ -28,13 +28,15 @@ RUN set -x && \
       autoconf \
       automake \
       bsd-compat-headers \
+      cmake \
       curl-dev \
       curl \
       dbus-glib-dev \
+      libdefalte-dev \
       gcc \
       g++ \
       gettext \
-      intltool \ 
+      intltool \
       libtool \
       libevent-dev \
       libnotify-dev \
@@ -48,7 +50,24 @@ RUN set -x && \
     curl -SsL  https://github.com/transmission/transmission/releases/download/${TRANSMISSION_VERSION}/transmission-${TRANSMISSION_VERSION}.tar.xz -o /tmp/transmission.tar.xz && \
     tar xJf /tmp/transmission.tar.xz -C /tmp && \
     cd /tmp/transmission-* && \
-    ./configure --enable-nls --enable-cli --enable-utp --with-inotify --prefix=/opt/transmission -q && \
+    mkdir build && \
+    cd build && \
+    cmake \
+      -DCMAKE_BUILD_TYPE=MinSizeRel \
+      -DENABLE_DAEMON=ON \
+      -DENABLE_QT=OFF \
+      -DENABLE_UTILS=ON \
+      -DENABLE_CLI=ON \
+      -DENABLE_GTK=OFF \
+      -DENABLE_MAC=OFF \
+      -DCMAKE_INSTALL_PREFIX=/opt/transmission \
+      -DCMAKE_INSTALL_LIBDIR=lib \
+      -DBUILD_SHARED_LIBS=True \
+      -DENABLE_TESTS=FALSE \
+      -DWITH_SYSTEMD=FALSE \
+      -DINSTALL_LIB=TRUE \
+      .. \
+    && \
     make -s && \
     make install && \
     curl -SsL https://github.com/Secretmapper/combustion/archive/release.zip -o /tmp/combustion.zip  && \

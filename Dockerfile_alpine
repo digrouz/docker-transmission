@@ -91,6 +91,7 @@ RUN set -x && \
       ca-certificates \
       jq \
       libcurl \
+      libdeflate \
       libevent \
       libnotify \
       openssl \

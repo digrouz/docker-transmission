@@ -1,4 +1,4 @@
-FROM alpine:3.17.2
+FROM alpine:
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
 ARG TRANSMISSION_VERSION='4.0.0'

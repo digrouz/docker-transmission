@@ -1,7 +1,4 @@
-#!/usr/bin/env bash
-
-. /etc/profile
-. /usr/local/bin/docker-entrypoint-functions.sh
+#!/command/with-contenv sh
 
 # Customizing sstmp
 if [ -f /etc/ssmtp/ssmtp.conf ];then

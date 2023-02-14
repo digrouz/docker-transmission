@@ -1,4 +1,4 @@
-FROM alpine:3.17.2
+FROM digrouz/alpine-s6:latest
 LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
 ARG TRANSMISSION_VERSION='4.0.0'
@@ -7,9 +7,6 @@ ARG TRANSMISSION_VERSION='4.0.0'
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
     TERM='xterm' \
-    APPUSER='transmission' \
-    APPUID='10003' \
-    APPGID='10003' \
     TRANSMISSION_VERSION="${TRANSMISSION_VERSION}"
 
 # Copy config files
@@ -17,12 +14,6 @@ COPY root/ /
 
 ### Install Application
 RUN set -x && \
-    chmod 1777 /tmp && \
-    . /usr/local/bin/docker-entrypoint-functions.sh && \
-    MYUSER=${APPUSER} && \
-    MYUID=${APPUID} && \
-    MYGID=${APPGID} && \
-    ConfigureUser && \
     apk upgrade --no-cache && \
     apk add --no-cache --virtual=build-deps \
       autoconf \
@@ -32,14 +23,14 @@ RUN set -x && \
       curl-dev \
       curl \
       dbus-glib-dev \
-      libdeflate-dev \
       gcc \
       g++ \
       gettext \
       intltool \
-      libtool \
+      libdeflate-dev \
       libevent-dev \
       libnotify-dev \
+      libtool \
       openssl-dev \
       patch \
       m4 \
@@ -74,7 +65,7 @@ RUN set -x && \
     unzip /tmp/combustion.zip -d /opt && \
     mkdir -p /tmp/twctemp && \
     TWCVERSION=$(curl -sX GET "https://api.github.com/repos/ronggang/transmission-web-control/releases/latest" \
-	| awk '/tag_name/{print $4;exit}' FS='[""]') \
+       | awk '/tag_name/{print $4;exit}' FS='[""]') \
     && \
     curl -SsL https://github.com/ronggang/transmission-web-control/archive/${TWCVERSION}.tar.gz -o /tmp/twc.tar.gz && \
     tar xf /tmp/twc.tar.gz -C /tmp/twctemp --strip-components=1 && \
@@ -87,7 +78,6 @@ RUN set -x && \
     && \
     apk add --no-cache --virtual=run-deps \
       p7zip \
-      bash \
       ca-certificates \
       jq \
       libcurl \
@@ -99,12 +89,8 @@ RUN set -x && \
       moreutils \
       miniupnpc \
       ssmtp \
-      su-exec \
       unzip \
     && \
-    mkdir -p /docker-entrypoint.d && \
-    chmod +x /usr/local/bin/docker-entrypoint.sh && \
-    ln -snf /usr/local/bin/docker-entrypoint.sh /docker-entrypoint.sh && \
     rm -rf /tmp/* \
            /var/cache/apk/*  \
            /var/tmp/*
@@ -114,10 +100,3 @@ VOLUME ["/config","/downloads","/watch"]
 
 ### Expose ports
 EXPOSE 9091 9092/tcp 9092/udp
-
-### Running User: not used, managed by docker-entrypoint.sh
-#USER transmission
-
-### Start transmission
-ENTRYPOINT ["/docker-entrypoint.sh"]
-CMD ["transmission"]

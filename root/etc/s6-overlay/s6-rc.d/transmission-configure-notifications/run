@@ -1,11 +1,4 @@
-#!/usr/bin/env bash
-
-. /etc/profile
-. /usr/local/bin/docker-entrypoint-functions.sh
-
-MYUSER="${APPUSER}"
-MYGID="${APPGID}"
-MYUID="${APPUID}"
+#!/command/with-contenv sh
 
 NOTIFICATION_ENABLED=$(jq -r '.["script-torrent-done-enabled"]' /config/settings.json)
 NOTIFICATION_SCRIPT=$(jq -r '.["script-torrent-done-filename"]' /config/settings.json)

@@ -1,11 +1,4 @@
-#!/usr/bin/env bash
-
-. /etc/profile
-. /usr/local/bin/docker-entrypoint-functions.sh
-
-MYUSER="${APPUSER}"
-MYGID="${APPGID}"
-MYUID="${APPUID}"
+#!/command/with-contenv sh
 
 BLOCKLIST_ENABLED=$(jq -r '.["blocklist-enabled"]' /config/settings.json)
 BLOCKLIST_URL=$(jq -r '.["blocklist-url"]' /config/settings.json | sed 's/\&amp;/\&/g')

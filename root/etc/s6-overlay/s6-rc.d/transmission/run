@@ -1,3 +1,5 @@
 #!/command/with-contenv sh
 
+export PATH=$PATH:/opt/transmission/bin
+
 exec s6-setuidgid appuser transmission-daemon --foreground --config-dir /config -c /watch -w /downloads -p 9091  -P 9092 --log-error

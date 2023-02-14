@@ -29,11 +29,10 @@ https://www.transmissionbt.com/
       -v <path to config>:/config  \
       -v <path to downloads>:/downloads   \
       -v <path to watch>:/watch  \
-      -v /etc/localtime:/etc/localtime:ro   \
       -p 9091:9091  \
       -p 9092:9092  \
-      -e DOCKUID=<UID default:10003> \
-      -e DOCKGID=<GID default:10003> \
+      -e UID=<UID default:10003> \
+      -e GID=<GID default:10003> \
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
       -e DOCKMAILDOMAIN=<originating mail domain> \

@@ -31,8 +31,8 @@ https://www.transmissionbt.com/
       -v <path to watch>:/watch  \
       -p 9091:9091  \
       -p 9092:9092  \
-      -e UID=<UID default:10003> \
-      -e GID=<GID default:10003> \
+      -e UID=<UID default:12345> \
+      -e GID=<GID default:12345> \
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
       -e DOCKMAILDOMAIN=<originating mail domain> \
@@ -42,13 +42,21 @@ https://www.transmissionbt.com/
 
 When you start the `transmission` image, you can adjust the configuration of the `transmission` instance by passing one or more environment variables on the `docker run` command line.
 
-### `DOCKUID`
+### `UID`
 
-This variable is not mandatory and specifies the user id that will be set to run the application. It has default value `10003`.
+This variable is not mandatory and specifies the user id that will be set to run the application. It has default value `12345`.
 
-### `DOCKGID`
+### `GID`
 
-This variable is not mandatory and specifies the group id that will be set to run the application. It has default value `10003`.
+This variable is not mandatory and specifies the group id that will be set to run the application. It has default value `12345`.
+
+### `AUTOUPGRADE`
+
+This variable is not mandatory and specifies if the container has to launch software update at startup or not. Valid values are `0` and `1`. It has default value `0`.
+
+### `TZ`
+
+This variable is not mandatory and specifies the timezone to be configured within the container. It has default value `Europe/Brussels`.
 
 ### `DOCKRELAY`
 
@@ -68,7 +76,8 @@ This variable is not mandatory and specifies if the container has to launch soft
 
 ## Notes
 
-* The docker entrypoint can upgrade operating system at each startup. To enable this feature, just add `-e DOCKUPGRADE=1` at container creation.
+* This container is built using [s6-overlay](https://github.com/just-containers/s6-overlay)
+* The docker entrypoint can upgrade operating system at each startup. To enable this feature, just add `-e AUTOUPGRADE=1` at container creation.
 
 ## Issues
 

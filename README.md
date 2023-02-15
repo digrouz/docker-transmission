@@ -33,6 +33,8 @@ https://www.transmissionbt.com/
       -p 9092:9092  \
       -e UID=<UID default:12345> \
       -e GID=<GID default:12345> \
+      -e AUTOUPGRADE=<0|1 default:0> \
+      -e TZ=<timezone default:Europe/Brussels> \
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
       -e DOCKMAILDOMAIN=<originating mail domain> \

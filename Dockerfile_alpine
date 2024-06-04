@@ -73,9 +73,6 @@ RUN set -x && \
     mkdir -p /opt/shift && \
     curl -SsL https://github.com/killemov/Shift/archive/master.tar.gz -o /tmp/shift.tar.gz && \
     tar xf /tmp/shift.tar.gz -C /opt/shift --strip-components=1 && \
-    mkdir -p /opt/transmissionic && \
-    curl -SsL https://github.com/6c65726f79/Transmissionic/archive/main.tar.gz -o /tmp/transmissionic.tar.gz && \
-    tar xf /tmp/transmissionic.tar.gz -C /opt/transmissionic --strip-components=1 && \
     apk del --no-cache --purge \
       build-deps  \
     && \

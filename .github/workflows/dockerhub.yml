@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push tag latest
-        uses: docker/build-push-action@main
+        uses: docker/build-push-action@master
         with:
           context: .
           file: Dockerfile_alpine
@@ -35,7 +35,7 @@ jobs:
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/transmission:latest
       -
         name: Build and push tag alpine
-        uses: docker/build-push-action@main
+        uses: docker/build-push-action@master
         with:
           context: .
           file: Dockerfile_alpine

@@ -43,6 +43,7 @@ RUN set -x && \
     cd /tmp/transmission-* && \
     curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.21-stable/community/transmission/miniupnpc.patch -o /tmp/miniupnpc.patch && \
     curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.21-stable/community/transmission/system-gtest.patch -o /tmp/system-gtest.patch && \
+    ls -1 && \
     patch < /tmp/miniupnpc.patch && \
     patch < /tmp/system-gtest.patch && \
     mkdir build && \

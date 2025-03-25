@@ -41,6 +41,10 @@ RUN set -x && \
     curl -SsL  https://github.com/transmission/transmission/releases/download/${TRANSMISSION_VERSION}/transmission-${TRANSMISSION_VERSION}.tar.xz -o /tmp/transmission.tar.xz && \
     tar xJf /tmp/transmission.tar.xz -C /tmp && \
     cd /tmp/transmission-* && \
+    curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.21-stable/community/transmission/miniupnpc.patch -o /tmp/miniupnpc.patch && \
+    curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.21-stable/community/transmission/system-gtest.patch -o /tmp/system-gtest.patch && \
+    patch < /tmp/miniupnpc.patch && \
+    patch < /tmp/system-gtest.patch && \
     mkdir build && \
     cd build && \
     cmake \

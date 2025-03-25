@@ -1,5 +1,5 @@
 FROM digrouz/alpine-s6:latest
-LABEL maintainer "DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
+LABEL maintainer="DI GREGORIO Nicolas <nicolas.digregorio@gmail.com>"
 
 ARG TRANSMISSION_VERSION='4.0.6'
 
@@ -42,10 +42,7 @@ RUN set -x && \
     tar xJf /tmp/transmission.tar.xz -C /tmp && \
     cd /tmp/transmission-* && \
     curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.21-stable/community/transmission/miniupnpc.patch -o /tmp/miniupnpc.patch && \
-    curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.21-stable/community/transmission/system-gtest.patch -o /tmp/system-gtest.patch && \
-    ls -1 && \
-    patch < /tmp/miniupnpc.patch && \
-    patch < /tmp/system-gtest.patch && \
+    patch -p0 libtransmission/port-forwarding-upnp.cc < /tmp/miniupnpc.patch && \
     mkdir build && \
     cd build && \
     cmake \

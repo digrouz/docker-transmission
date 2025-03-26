@@ -81,6 +81,7 @@ RUN set -x && \
     apk add --no-cache --virtual=run-deps \
       p7zip \
       ca-certificates \
+      curl \
       jq \
       libcurl \
       libdeflate \

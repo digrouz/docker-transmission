@@ -35,9 +35,12 @@ https://www.transmissionbt.com/
       -e GID=<GID default:12345> \
       -e AUTOUPGRADE=<0|1 default:0> \
       -e TZ=<timezone default:Europe/Brussels> \
+      -e DOCKNOTIFTYPE=<notification type. telegram|mail> \
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
       -e DOCKMAILDOMAIN=<originating mail domain> \
+      -e DOCKTELEGRAMBOTTOKEN=<Telegram bot token> \
+      -e DOCKTELEGRAMCHATID=<Telegram chat id> \
       -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
@@ -71,6 +74,18 @@ This variable is not mandatory and specifies the mail that has to be used to sen
 ### `DOCKMAILDOMAIN`
 
 This variable is not mandatory and specifies the address where the mail appears to come from for user authentication. Do not specify any if mail notifications are not required.
+
+### `DOCKNOTIFTYPE`
+
+This variable is not mandatory and specifies which type of notifications with be sent by Transmission when a torrent is completed. Valid values are `mail` or `telegram`.
+
+### `DOCKTELEGRAMBOTTOKEN`
+
+This variable is not mandatory and specifices what Telegram Bot Token will be used to send notifications when a torrent is completed.
+
+### `DOCKTELEGRAMCHATID`
+
+This variable is not mandatory and specifices what Telegram Chat ID will be used to send notifications when a torrent is completed.
 
 ### `DOCKUPGRADE`
 

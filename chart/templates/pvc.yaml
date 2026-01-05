@@ -1,0 +1,56 @@
+{{- if eq .Values.persistence.config.type "pvc" }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-config-pvc
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: transmission
+spec:
+  accessModes:
+    - {{ .Values.persistence.config.pvc.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.config.pvc.size | quote }}
+  {{- if .Values.persistence.config.pvc.storageClass }}
+  storageClassName: {{ .Values.persistence.config.pvc.storageClass | quote }}
+  {{- end }}
+{{- end }}
+--- 
+{{- if eq .Values.persistence.downloads.type "pvc" }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-downloads-pvc
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: transmission
+spec:
+  accessModes:
+    - {{ .Values.persistence.downloads.pvc.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.downloads.pvc.size | quote }}
+  {{- if .Values.persistence.downloads.pvc.storageClass }}
+  storageClassName: {{ .Values.persistence.downloads.pvc.storageClass | quote }}
+  {{- end }}
+{{- end }} 
+---
+{{- if eq .Values.persistence.watch.type "pvc" }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Release.Name }}-watch-pvc
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: transmission
+spec:
+  accessModes:
+    - {{ .Values.persistence.watch.pvc.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.watch.pvc.size | quote }}
+  {{- if .Values.persistence.watch.pvc.storageClass }}
+  storageClassName: {{ .Values.persistence.watch.pvc.storageClass | quote }}
+  {{- end }}
+{{- end }}

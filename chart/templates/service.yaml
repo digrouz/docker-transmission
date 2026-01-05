@@ -1,0 +1,21 @@
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Release.Name }}-svc
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: transmission
+spec:
+  ports:
+  - port: 9091
+    name: webui
+    protocol: TCP
+  - port: 9092
+    name: api
+    protocol: TCP
+  - port: 9092
+    name: dht
+    protocol: UDP
+  selector:
+    app.kubernetes.io/component: transmission

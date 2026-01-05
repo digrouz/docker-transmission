@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-transmission
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/component: transmission
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: transmission
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: transmission
+    spec:
+      containers:
+        - name: transmission
+          image: {{ .Values.image.registry }}/{{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 9091
+            - containerPort: 9092
+          volumeMounts:
+            - mountPath: /config
+              name: transmission-config
+            - mountPath: /downloads
+              name: transmission-downloads
+            - mountPath: /watch
+              name: transmission-watch
+{{- if .Values.persistence.extraVolumeMounts }}
+{{- toYaml .Values.persistence.extraVolumeMounts | nindent 12 }}
+{{- end }}
+          env:
+            - name: GID
+              value: "{{ .Values.service.gid }}"
+            - name: UID
+              value: "{{ .Values.service.uid }}"
+            - name: TZ
+              value: "{{ .Values.service.tz }}"
+            - name: AUTOUPGRADE
+              value: "{{ .Values.service.autoupgrade }}"
+      volumes:
+        - name: transmission-config
+          {{- if eq .Values.persistence.config.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-config-pvc
+          {{- else if eq .Values.persistence.config.type "nfs" }}
+          nfs:
+            server: {{ .Values.persistence.config.nfs.server }}
+            path: {{ .Values.persistence.config.nfs.path }}
+          {{- else }}
+          emptyDir: { }
+          {{- end }}
+        - name: transmission-downloads
+          {{- if eq .Values.persistence.downloads.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-downloads-pvc
+          {{- else if eq .Values.persistence.downloads.type "nfs" }}
+          nfs:
+            server: {{ .Values.persistence.downloads.nfs.server }}
+            path: {{ .Values.persistence.downloads.nfs.path }}
+          {{- else }}
+          emptyDir: { }
+          {{- end }}
+        - name: transmission-watch
+          {{- if eq .Values.persistence.watch.type "pvc" }}
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-watch-pvc
+          {{- else if eq .Values.persistence.watch.type "nfs" }}
+          nfs:
+            server: {{ .Values.persistence.watch.nfs.server }}
+            path: {{ .Values.persistence.watch.nfs.path }}
+          {{- else }}
+          emptyDir: { }
+          {{- end }}
+{{- if .Values.persistence.extraVolumes }}
+{{- toYaml .Values.persistence.extraVolumes | nindent 8 }}
+{{- end }}

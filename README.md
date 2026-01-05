@@ -1,30 +1,34 @@
+# docker-transmission
+
 [![auto-update](https://github.com/digrouz/docker-transmission/actions/workflows/auto-update.yml/badge.svg)](https://github.com/digrouz/docker-transmission/actions/workflows/auto-update.yml)
 [![dockerhub](https://github.com/digrouz/docker-transmission/actions/workflows/dockerhub.yml/badge.svg)](https://github.com/digrouz/docker-transmission/actions/workflows/dockerhub.yml)
 ![Docker Pulls](https://img.shields.io/docker/pulls/digrouz/transmission)
 
-# docker-transmission
 Installs Transmission into an Alpine container. It supports mail notifications through `ssmtp`.
 
 ![transmissionbt](https://upload.wikimedia.org/wikipedia/commons/archive/6/6d/20080126162557%21Transmission_icon.png)
 
 ## Tag
+
 Several tag are available:
+
 * latest: see alpine
 * alpine: [Dockerfile_alpine](https://github.com/digrouz/docker-transmission/blob/master/Dockerfile_alpine)
-
 
 ## Description
 
 Transmission is a cross-platform BitTorrent client that is:
-- Open Source.
-- Easy.
-- Lean.
-- Native.
-- Powerful.
 
-https://www.transmissionbt.com/
+* Open Source.
+* Easy.
+* Lean.
+* Native.
+* Powerful.
+
+[Official Website](https://www.transmissionbt.com/)
 
 ## Usage
+
     docker create --name=transmission  \
       -v <path to config>:/config  \
       -v <path to downloads>:/downloads   \
@@ -95,6 +99,7 @@ This variable is not mandatory and specifies if the container has to launch soft
 
 * This container is built using [s6-overlay](https://github.com/just-containers/s6-overlay)
 * The docker entrypoint can upgrade operating system at each startup. To enable this feature, just add `-e AUTOUPGRADE=1` at container creation.
+* An helm chart is available of in the [chart folder](https://github.com/digrouz/docker-transmission/tree/master/chart) with an example [value.yaml](https://github.com/digrouz/docker-transmission/tree/master/chart/value.yaml)
 
 ## Issues
 

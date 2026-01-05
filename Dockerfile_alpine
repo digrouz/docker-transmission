@@ -7,7 +7,8 @@ ARG TRANSMISSION_VERSION='4.0.6'
 ENV LANG='en_US.UTF-8' \
     LANGUAGE='en_US.UTF-8' \
     TERM='xterm' \
-    TRANSMISSION_VERSION="${TRANSMISSION_VERSION}"
+    TRANSMISSION_VERSION="${TRANSMISSION_VERSION}" \
+    CMAKE_POLICY_VERSION_MINIMUM='3.5'
 
 # Copy config files
 COPY root/ /
@@ -41,7 +42,7 @@ RUN set -x && \
     curl -SsL  https://github.com/transmission/transmission/releases/download/${TRANSMISSION_VERSION}/transmission-${TRANSMISSION_VERSION}.tar.xz -o /tmp/transmission.tar.xz && \
     tar xJf /tmp/transmission.tar.xz -C /tmp && \
     cd /tmp/transmission-* && \
-    curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.21-stable/community/transmission/miniupnpc.patch -o /tmp/miniupnpc.patch && \
+    curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.23-stable/community/transmission/miniupnpc.patch -o /tmp/miniupnpc.patch && \
     patch -p0 libtransmission/port-forwarding-upnp.cc < /tmp/miniupnpc.patch && \
     mkdir build && \
     cd build && \

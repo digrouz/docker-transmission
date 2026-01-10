@@ -1,0 +1,5 @@
+#!/usr/bin/with-contenv bash
+
+if [ ! -f /config/settings.json ]; then
+  cp /opt/defaults/transmission/settings.json /config/settings.json
+fi

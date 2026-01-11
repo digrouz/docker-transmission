@@ -34,6 +34,24 @@ service:
   ## @param service.tz Time Zone
   ##
   tz: Europe/Brussels
+  ## @param service.notiftype Notification type
+  ## Example: mail, telegram
+  ##
+  notiftype: "mail"
+## @section SMTP Configuration
+##
+smtp:
+  ## @param smtp.host SMTP host
+  ##
+  host: ""
+  ## @param smtp.from SMTP sender email address
+  ## Example: foo.bar@domain.com
+  ##
+  from: ""
+  ## @param smtp.domain SMTP sender email address
+  ## Example: domain.com
+  ##
+  domain: ""
 ## @section Ingress Configuration
 ##
 ingress:

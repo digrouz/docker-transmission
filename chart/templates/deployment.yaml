@@ -42,6 +42,14 @@ spec:
               value: "{{ .Values.service.tz }}"
             - name: AUTOUPGRADE
               value: "{{ .Values.service.autoupgrade }}"
+            - name: DOCKNOTIFTYPE
+              value: "{{ .Values.service.notiftype }}"
+            - name: DOCKRELAY
+              value: "{{ .Values.smtp.host }}"
+            - name: DOCKMAIL
+              value: "{{ .Values.smtp.from }}"
+            - name: DOCKDOMAIN
+              value: "{{ .Values.smtp.domain }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

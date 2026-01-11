@@ -1,5 +1,5 @@
 #!/command/with-contenv sh
 
-if [ ! -f /config/settings.json ]; then
+if [ ! -f /config/settings.json -o -s /config/settings.json ]; then
   cp /opt/defaults/transmission/settings.json /config/settings.json
 fi

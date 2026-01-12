@@ -4,12 +4,12 @@ NOTIFICATION_ENABLED=$(jq -r '.["script-torrent-done-enabled"]' /config/settings
 NOTIFICATION_SCRIPT=$(jq -r '.["script-torrent-done-filename"]' /config/settings.json)
 NOTIFICATION_TYPE=${DOCKNOTIFTYPE}
 
-if [ ${NOTIFICATION_TYPE} == "mail" -o ${NOTIFICATION_TYPE} == "telegram" ]; then
-  if [ ${NOTIFICATION_SCRIPT} != "/usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh" ]; then
+if [ "${NOTIFICATION_TYPE}" == "mail" -o "${NOTIFICATION_TYPE}" == "telegram" ]; then
+  if [ "${NOTIFICATION_SCRIPT}" != "/usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh" ]; then
     echo "Setting notification script to /usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh"
     jq '."script-torrent-done-filename" = "/usr/local/bin/transmission-"'${NOTIFICATION_TYPE}'"-notification.sh"' /config/settings.json | sponge /config/settings.json
   fi
-  if [ ${NOTIFICATION_TYPE} == "telegram" ]; then
+  if [ "${NOTIFICATION_TYPE}" == "telegram" ]; then
     if [ ${DOCKTELEGRAMBOTTOKEN} ]; then
       sed -i "s|BOT_TOKEN=.*|BOT_TOKEN=\"${DOCKTELEGRAMBOTTOKEN}\"|i" /usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh
       if [ ${DOCKTELEGRAMCHATID} ]; then
@@ -21,7 +21,7 @@ if [ ${NOTIFICATION_TYPE} == "mail" -o ${NOTIFICATION_TYPE} == "telegram" ]; the
       echo "Telegram bot token missing."
     fi
   fi
-  if [ ${NOTIFICATION_ENABLED} == false ]; then
+  if [ "${NOTIFICATION_ENABLED}" == false ]; then
     echo "Enabling Notifications"
     jq '."script-torrent-done-enabled" = true' /config/settings.json | sponge /config/settings.json
   fi

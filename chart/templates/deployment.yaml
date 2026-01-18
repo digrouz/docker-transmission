@@ -50,6 +50,8 @@ spec:
               value: "{{ .Values.smtp.from }}"
             - name: DOCKDOMAIN
               value: "{{ .Values.smtp.domain }}"
+            - name: DOCKUMASK
+              value: "{{ .Values.service.umask | default "002" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

@@ -1,0 +1,10 @@
+#!/command/with-contenv sh
+
+UMASK=$(jq -r '.["umask"]' /config/settings.json)
+
+if [ -n "${DOCKUMASK}" -a "${DOCKUMASK}" != "${DOCKUMASK}" ]; then
+  echo "Setting umask to ${DOCKUMASK}"
+  jq '."umask" = "'${DOCKUMASK}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "umask already set to ${UMASK}"
+fi

@@ -38,6 +38,10 @@ service:
   ## Example: mail, telegram
   ##
   notiftype: "mail"
+  ## @param service.umask Umask for created files and directories
+  ## Example: 002, 022
+  ##
+  umask: "002"
 ## @section SMTP Configuration
 ##
 smtp:

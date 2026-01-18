@@ -42,6 +42,7 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKNOTIFTYPE=<notification type. telegram|mail> \
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
+      -e DOCKUMASK=<transmission umask default:002> \
       -e DOCKMAILDOMAIN=<originating mail domain> \
       -e DOCKTELEGRAMBOTTOKEN=<Telegram bot token> \
       -e DOCKTELEGRAMCHATID=<Telegram chat id> \
@@ -82,6 +83,10 @@ This variable is not mandatory and specifies the address where the mail appears 
 ### `DOCKNOTIFTYPE`
 
 This variable is not mandatory and specifies which type of notifications with be sent by Transmission when a torrent is completed. Valid values are `mail` or `telegram`.
+
+### `DOCKUMASK`
+
+This variable is not mandatory and specifies which umask Transmission is using for downloads. it has default value `002`.
 
 ### `DOCKTELEGRAMBOTTOKEN`
 

@@ -1,5 +1,6 @@
 #!/command/with-contenv sh
 
 if [ ! -f /config/settings.json -o -s /config/settings.json ]; then
+  echo "Transmission settings.json not found or empty, copying default settings."
   cp /opt/defaults/transmission/settings.json /config/settings.json
 fi

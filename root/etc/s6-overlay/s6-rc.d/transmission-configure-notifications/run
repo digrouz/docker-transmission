@@ -1,7 +1,5 @@
 #!/command/with-contenv sh
 
-set -x
-
 NOTIFICATION_ENABLED=$(jq -r '.["script-torrent-done-enabled"]' /config/settings.json)
 NOTIFICATION_SCRIPT=$(jq -r '.["script-torrent-done-filename"]' /config/settings.json)
 NOTIFICATION_TYPE=${DOCKNOTIFTYPE}

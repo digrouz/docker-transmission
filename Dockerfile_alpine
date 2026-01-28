@@ -42,8 +42,6 @@ RUN set -x && \
     curl -SsL  https://github.com/transmission/transmission/releases/download/${TRANSMISSION_VERSION}/transmission-${TRANSMISSION_VERSION}.tar.xz -o /tmp/transmission.tar.xz && \
     tar xJf /tmp/transmission.tar.xz -C /tmp && \
     cd /tmp/transmission-* && \
-    curl -SsL https://gitlab.alpinelinux.org/alpine/aports/-/raw/3.23-stable/community/transmission/miniupnpc.patch -o /tmp/miniupnpc.patch && \
-    patch -p0 libtransmission/port-forwarding-upnp.cc < /tmp/miniupnpc.patch && \
     mkdir build && \
     cd build && \
     cmake \

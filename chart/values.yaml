@@ -42,6 +42,14 @@ service:
   ## Example: 002, 022
   ##
   umask: "002"
+  ## @param service.blocklistenabled Enable or disable blocklist
+  ## Example: "true", "false"
+  ##
+  blocklistenabled: "false"
+  ## @param service.blocklisturl URL for blocklist
+  ## Example: "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz"
+  ##
+  blocklisturl: "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz"
 ## @section SMTP Configuration
 ##
 smtp:

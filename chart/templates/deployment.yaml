@@ -52,6 +52,10 @@ spec:
               value: "{{ .Values.smtp.domain }}"
             - name: DOCKUMASK
               value: "{{ .Values.service.umask | default "002" }}"
+            - name: DOCKBLOCKLISTENABLED
+              value: "{{ .Values.service.blocklistenabled | default "false" }}"
+            - name: DOCKBLOCKLISTURL
+              value: "{{ .Values.service.blocklisturl | default "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

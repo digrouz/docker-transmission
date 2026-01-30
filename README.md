@@ -43,6 +43,8 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKMAIL=<mail address> \
       -e DOCKRELAY=<smtp relay> \
       -e DOCKUMASK=<transmission umask default:002> \
+      -e DOCKBLOCKLISTENABLED=<transmission blocklist:true> \
+      -e DOCKBLOCKLISTURL=<transmission blocklist URL> \
       -e DOCKMAILDOMAIN=<originating mail domain> \
       -e DOCKTELEGRAMBOTTOKEN=<Telegram bot token> \
       -e DOCKTELEGRAMCHATID=<Telegram chat id> \
@@ -87,6 +89,10 @@ This variable is not mandatory and specifies which type of notifications with be
 ### `DOCKUMASK`
 
 This variable is not mandatory and specifies which umask Transmission is using for downloads. it has default value `002`.
+
+### `DOCKBLOCKLISTENABLED`
+
+This variable is not mandatory and specifies if IP blocklist are active Transmission. it has default value `false`.
 
 ### `DOCKTELEGRAMBOTTOKEN`
 

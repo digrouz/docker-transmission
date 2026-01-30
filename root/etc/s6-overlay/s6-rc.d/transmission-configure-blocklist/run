@@ -1,0 +1,18 @@
+#!/command/with-contenv sh
+
+BLOCKLIST_ENABLED=$(jq -r '.["blocklist-enabled"]' /config/settings.json)
+BLOCKLIST_URL=$(jq -r '.["blocklist-url"]' /config/settings.json)
+
+if [ -n "${DOCKBLOCKLISTENABLED}" -a "${DOCKBLOCKLISTENABLED}" != "${BLOCKLIST_ENABLED}" ]; then
+  echo "Setting blocklist enabled to ${DOCKBLOCKLISTENABLED}"
+  jq '."blocklist-enabled" = "'${DOCKBLOCKLISTENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "blocklist already set to ${BLOCKLIST_ENABLED}"
+fi
+
+if [ -n "${DOCKBLOCKLISTURL}" -a "${DOCKBLOCKLISTURL}" != "${BLOCKLIST_URL}" ]; then
+  echo "Setting blocklist URL to ${DOCKBLOCKLISTURL}"
+  jq '."blocklist-url" = "'${DOCKBLOCKLISTURL}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "blocklist URL already set to ${BLOCKLIST_URL}"
+fi

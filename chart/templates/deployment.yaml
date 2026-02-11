@@ -47,7 +47,7 @@ spec:
             - name: DOCKRELAY
               value: "{{ .Values.smtp.host }}"
             - name: DOCKMAIL
-              value: "{{ .Values.smtp.from }}"
+              value: "{{ .Values.smtp.to }}"
             - name: DOCKMAILDOMAIN
               value: "{{ .Values.smtp.domain }}"
             - name: DOCKUMASK

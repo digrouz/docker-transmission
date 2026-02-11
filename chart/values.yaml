@@ -56,10 +56,10 @@ smtp:
   ## @param smtp.host SMTP host
   ##
   host: ""
-  ## @param smtp.from SMTP sender email address
+  ## @param smtp.to SMTP recipient email address
   ## Example: foo.bar@domain.com
   ##
-  from: ""
+  to: ""
   ## @param smtp.domain SMTP sender email address
   ## Example: domain.com
   ##

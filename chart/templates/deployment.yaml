@@ -48,7 +48,7 @@ spec:
               value: "{{ .Values.smtp.host }}"
             - name: DOCKMAIL
               value: "{{ .Values.smtp.from }}"
-            - name: DOCKDOMAIN
+            - name: DOCKMAILDOMAIN
               value: "{{ .Values.smtp.domain }}"
             - name: DOCKUMASK
               value: "{{ .Values.service.umask | default "002" }}"

@@ -4,8 +4,11 @@ BLOCKLIST_ENABLED=$(jq -r '.["blocklist-enabled"]' /config/settings.json)
 BLOCKLIST_URL=$(jq -r '.["blocklist-url"]' /config/settings.json | sed 's/\&amp;/\&/g')
 
 if [ $BLOCKLIST_ENABLED == true ]; then
+  if [ ! -d /config/blocklists ]; then
+    mkdir -p /config/blocklists
+  fi
   echo "Updating blocklists"
-  mkdir -p /config/blocklists-tmp
+  mkdir -p  /config/blocklists-tmp
   wget -q "${BLOCKLIST_URL}" -O /config/blocklists-tmp/blocklist.gz
   if [ $? == 0 ]; then
     cd /config/blocklists-tmp
@@ -13,7 +16,7 @@ if [ $BLOCKLIST_ENABLED == true ]; then
     if [ $? == 0 ]; then
       chmod go+r *
       rm -rf /config/blocklists/* /config/blocklists-tmp/blocklist.gz
-      mv /config/blocklists-tmp/* /config/blocklists
+      mv /config/blocklists-tmp/* /config/blocklists/
       rm -rf /config/blocklists-tmp
     fi
   fi

@@ -1,0 +1,83 @@
+#!/command/with-contenv sh
+
+RPC_AUTHENTICATION_REQUIRED=$(jq -r '.["rpc-authentication-required"]' /config/settings.json)
+RPC_BIND_ADDRESS=$(jq -r '.["rpc-bind-address"]' /config/settings.json)
+RPC_ENABLED=$(jq -r '.["rpc-enabled"]' /config/settings.json)
+RPC_USERNAME=$(jq -r '.["rpc-username"]' /config/settings.json)
+RPC_PASSWORD=$(jq -r '.["rpc-password"]' /config/settings.json)
+RPC_PORT=$(jq -r '.["rpc-port"]' /config/settings.json)
+RPC_WHITELIST=$(jq -r '.["rpc-whitelist"]' /config/settings.json)
+RPC_WHITELIST_ENABLED=$(jq -r '.["rpc-whitelist-enabled"]' /config/settings.json)
+RPC_HOST_WHITELIST=$(jq -r '.["rpc-host-whitelist"]' /config/settings.json)
+RPC_HOST_WHITELIST_ENABLED=$(jq -r '.["rpc-host-whitelist-enabled"]' /config/settings.json)
+
+if [ -n "${DOCKRPCENABLED}" -a "${DOCKRPCENABLED}" != "${RPC_ENABLED}" ]; then
+  echo "Setting rpc-enabled to ${DOCKRPCENABLED}"
+  jq '."rpc-enabled" = "'${DOCKRPCENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-enabled already set to ${RPC_ENABLED}"
+fi
+
+if [ -n "${DOCKRPC_AUTHENTICATION_REQUIRED}" -a "${DOCKRPC_AUTHENTICATION_REQUIRED}" != "${RPC_AUTHENTICATION_REQUIRED}" ]; then
+  echo "Setting rpc-authentication-required to ${DOCKRPC_AUTHENTICATION_REQUIRED}"
+  jq '."rpc-authentication-required" = "'${DOCKRPC_AUTHENTICATION_REQUIRED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-authentication-required already set to ${RPC_AUTHENTICATION_REQUIRED}"
+fi
+
+if [ -n "${DOCKRPC_BIND_ADDRESS}" -a "${DOCKRPC_BIND_ADDRESS}" != "${RPC_BIND_ADDRESS}" ]; then
+  echo "Setting rpc-bind-address to ${DOCKRPC_BIND_ADDRESS}"
+  jq '."rpc-bind-address" = "'${DOCKRPC_BIND_ADDRESS}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-bind-address already set to ${RPC_BIND_ADDRESS}"
+fi
+
+if [ -n "${DOCKRPCUSERNAME}" -a "${DOCKRPCUSERNAME}" != "${RPC_USERNAME}" ]; then
+  echo "Setting rpc-username to ${DOCKRPCUSERNAME}"
+  jq '."rpc-username" = "'${DOCKRPCUSERNAME}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-username already set to ${RPC_USERNAME}"
+fi
+
+if [ -n "${DOCKRPCPASSWORD}" -a "${DOCKRPCPASSWORD}" != "${RPC_PASSWORD}" ]; then
+  echo "Setting rpc-password to ${DOCKRPCPASSWORD}"
+  jq '."rpc-password" = "'${DOCKRPCPASSWORD}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-password already set to ${RPC_PASSWORD}"
+fi
+
+if [ -n "${DOCKRPCPORT}" -a "${DOCKRPCPORT}" != "${RPC_PORT}" ]; then
+  echo "Setting rpc-port to ${DOCKRPCPORT}"
+  jq '."rpc-port" = "'${DOCKRPCPORT}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-port already set to ${RPC_PORT}"
+fi
+
+if [ -n "${DOCKRPCWHITELIST}" -a "${DOCKRPCWHITELIST}" != "${RPC_WHITELIST}" ]; then
+  echo "Setting rpc-whitelist to ${DOCKRPCWHITELIST}"
+  jq '."rpc-whitelist" = "'${DOCKRPCWHITELIST}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-whitelist already set to ${RPC_WHITELIST}"
+fi
+
+if [ -n "${DOCKRPCWHITELISTENABLED}" -a "${DOCKRPCWHITELISTENABLED}" != "${RPC_WHITELIST_ENABLED}" ]; then
+  echo "Setting rpc-whitelist-enabled to ${DOCKRPCWHITELISTENABLED}"
+  jq '."rpc-whitelist-enabled" = "'${DOCKRPCWHITELISTENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-whitelist-enabled already set to ${RPC_WHITELIST_ENABLED}"
+fi
+
+if [ -n "${DOCKRPCHOSTWHITELIST}" -a "${DOCKRPCHOSTWHITELIST}" != "${RPC_HOST_WHITELIST}" ]; then
+  echo "Setting rpc-host-whitelist to ${DOCKRPCHOSTWHITELIST}"
+  jq '."rpc-host-whitelist" = "'${DOCKRPCHOSTWHITELIST}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-host-whitelist already set to ${RPC_HOST_WHITELIST}"
+fi
+
+if [ -n "${DOCKRPCHOSTWHITELISTENABLED}" -a "${DOCKRPCHOSTWHITELISTENABLED}" != "${RPC_HOST_WHITELIST_ENABLED}" ]; then
+  echo "Setting rpc-host-whitelist-enabled to ${DOCKRPCHOSTWHITELISTENABLED}"
+  jq '."rpc-host-whitelist-enabled" = "'${DOCKRPCHOSTWHITELISTENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "rpc-host-whitelist-enabled already set to ${RPC_HOST_WHITELIST_ENABLED}"
+fi
+

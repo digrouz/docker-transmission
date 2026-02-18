@@ -50,6 +50,44 @@ service:
   ## Example: "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz"
   ##
   blocklisturl: "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz"
+  ## @param service.rpcenabled Enable or disable RPC
+  ## Example: "true", "false"
+  ##
+  rpcenabled: "true"
+  ## @param service.rpcbindaddress RPC bind address
+  ## Example: "0.0.0.0"
+  ##
+  rpcbindaddress: "0.0.0.0"
+  ## @param service.rpcauthenticationrequired Enable or disable RPC authentication
+  ## Example: "true", "false"
+  ##
+  rpcauthenticationrequired: "true"
+  ## @param service.rpcusername RPC username for transmission
+  ## Example: transmission
+  ##
+  rpcusername: "transmission"
+  ## @param service.rpcpassword RPC password for transmission
+  ## Example: transmission
+  ##
+  rpcpassword: "transmission"
+  ## @param service.rpcport RPC port for transmission
+  ## Example: 9092
+  ##
+  rpcport: 9092
+  ## @param service.rpcwhitelistenabled Enable or disable RPC whitelist
+  ## Example: "true", "false"
+  ##
+  rpcwhitelistenabled: "true"
+  ## @param service.rpcwhitelist RPC whitelist for transmission
+  ## Example: "127.0.0.1,::1"
+  rpcwhitelist: "127.0.0.1,::1"
+  ## @param service.rpchostwhitelistenabled Enable or disable RPC whitelist allowed
+  ## Example: "true", "false"
+  ##
+  rpchostwhitelistenabled: "false"
+  ## @param service.rpchostwhitelist RPC whitelist allowed for transmission
+  ## Example: ""
+  rpchostwhitelist: ""
 ## @section SMTP Configuration
 ##
 smtp:
@@ -208,7 +246,7 @@ persistence:
       ## If not set, the default NFS server will be used
       ##
       server: ""
-      ## @param persistence.tvshows.nfs.path NFS path for transmission tvshows
+      ## @param persistence.watch.nfs.path NFS path for transmission watch
       ## If not set, the default NFS path will be used
       ##
       path: ""

@@ -56,6 +56,32 @@ spec:
               value: "{{ .Values.service.blocklistenabled | default "false" }}"
             - name: DOCKBLOCKLISTURL
               value: "{{ .Values.service.blocklisturl | default "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz" }}"
+            - name: DOCKRPCENABLED
+              value: "{{ .Values.service.rpcenabled | default "true" }}"
+            - name: DOCKRPCAUTHENTICATIONREQUIRED
+              value: "{{ .Values.service.rpcauthenticationrequired | default "true" }}"
+            - name: DOCKRPCUSERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-rpc-secret
+                  key: rpc-username
+            - name: DOCKRPCPASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-rpc-secret
+                  key: rpc-password
+            - name: DOCKRPCPORT
+              value: "{{ .Values.service.rpcport | default "9092" }}"
+            - name: DOCKRPCBINDADDRESS
+              value: "{{ .Values.service.rpcbindaddress | default "0.0.0.0" }}"
+            - name: DOCKRPCWHITELISTENABLED
+              value: "{{ .Values.service.rpcwhitelistenabled | default "false" }}"
+            - name: DOCKRPCWHITELIST
+              value: "{{ .Values.service.rpcwhitelist | default "127.0.0.1,::1" }}"
+            - name: DOCKRPCHOSTWHITELISTENABLED
+              value: "{{ .Values.service.rpchostwhitelistenabled | default "false" }}"
+            - name: DOCKRPCHOSTWHITELIST
+              value: "{{ .Values.service.rpchostwhitelist | default "127.0.0.1,::1" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

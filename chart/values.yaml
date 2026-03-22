@@ -100,6 +100,50 @@ service:
   ## Example: 100
   ##
   antiBruteForceThreshold: 100
+  ## @param service.speedLimitDownEnabled Enable or disable speed limit down
+  ## Example: "true", "false"
+  ##
+  speedLimitDownEnabled: "false"
+  ## @param service.speedLimitDown Speed limit down
+  ## Example: 100
+  ##
+  speedLimitDown: 100
+  ## @param service.speedLimitUpEnabled Enable or disable speed limit up
+  ## Example: "true", "false"
+  ##
+  speedLimitUpEnabled: "false"
+  ## @param service.speedLimitUp Speed limit up
+  ## Example: 100
+  ##
+  speedLimitUp: 100
+  ## @param service.altSpeedEnabled Enable or disable alt speed
+  ## Example: "true", "false"
+  ##
+  altSpeedEnabled: "false"
+  ## @param service.altSpeedDown Alt speed down
+  ## Example: 50
+  ##
+  altSpeedDown: 50
+  ## @param service.altSpeedUp Alt speed up
+  ## Example: 50
+  ##
+  altSpeedUp: 50
+  ## @param service.altSpeedTimeEnabled Enable or disable alt speed time
+  ## Example: "true", "false"
+  ##
+  altSpeedTimeEnabled: "false"
+  ## @param service.altSpeedTimeBegin Alt speed time begin (HHMM format)
+  ## Example: 0930
+  ##
+  altSpeedTimeBegin: 0
+  ## @param service.altSpeedTimeEnd Alt speed time end (HHMM format)
+  ## Example: 1630
+  ##
+  altSpeedTimeEnd: 0
+  ## @param service.altSpeedTimeDay Alt speed time day (bitmask: 1=Sun, 2=Mon, 4=Tue, 8=Wed, 16=Thu, 32=Fri, 64=Sat)
+  ## Example: 127 (all days), 62 (weekdays)
+  ##
+  altSpeedTimeDay: 0
 ## @section SMTP Configuration
 ##
 smtp:

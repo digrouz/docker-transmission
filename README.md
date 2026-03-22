@@ -61,6 +61,17 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKLPDENABLED=<transmission lpd enabled:false> \
       -e DOCKANTIBRUTEFORCEENABLED=<transmission anti-brute-force enabled:false> \
       -e DOCKANTIBRUTEFORCETHRESHOLD=<transmission anti-brute-force threshold:100> \
+      -e DOCKSPEEDLIMITDOWNENABLED=<transmission speed limit down enabled:false> \
+      -e DOCKSPEEDLIMITDOWN=<transmission speed limit down:100> \
+      -e DOCKSPEEDLIMITUPENABLED=<transmission speed limit up enabled:false> \
+      -e DOCKSPEEDLIMITUP=<transmission speed limit up:100> \
+      -e DOCKALTSPEEDENABLED=<transmission alt speed enabled:false> \
+      -e DOCKALTSPEEDDOWN=<transmission alt speed down:50> \
+      -e DOCKALTSPEEDUP=<transmission alt speed up:50> \
+      -e DOCKALTSPEEDTIMEENABLED=<transmission alt speed time enabled:false> \
+      -e DOCKALTSPEEDTIMEBEGIN=<transmission alt speed time begin:0> \
+      -e DOCKALTSPEEDTIMEEND=<transmission alt speed time end:0> \
+      -e DOCKALTSPEEDTIMEDAY=<transmission alt speed time day:0> \
       -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
@@ -163,6 +174,50 @@ This variable is not mandatory and specifies if anti-brute-force is enabled. it 
 
 This variable is not mandatory and specifies the anti-brute-force threshold. it has default value `100`.
 
+### `DOCKSPEEDLIMITDOWNENABLED`
+
+This variable is not mandatory and specifies if speed limit down is enabled. it has default value `false`.
+
+### `DOCKSPEEDLIMITDOWN`
+
+This variable is not mandatory and specifies the speed limit down in KiB/s. it has default value `100`.
+
+### `DOCKSPEEDLIMITUPENABLED`
+
+This variable is not mandatory and specifies if speed limit up is enabled. it has default value `false`.
+
+### `DOCKSPEEDLIMITUP`
+
+This variable is not mandatory and specifies the speed limit up in KiB/s. it has default value `100`.
+
+### `DOCKALTSPEEDENABLED`
+
+This variable is not mandatory and specifies if alt speed is enabled. it has default value `false`.
+
+### `DOCKALTSPEEDDOWN`
+
+This variable is not mandatory and specifies the alt speed down in KiB/s. it has default value `50`.
+
+### `DOCKALTSPEEDUP`
+
+This variable is not mandatory and specifies the alt speed up in KiB/s. it has default value `50`.
+
+### `DOCKALTSPEEDTIMEENABLED`
+
+This variable is not mandatory and specifies if alt speed time is enabled. it has default value `false`.
+
+### `DOCKALTSPEEDTIMEBEGIN`
+
+This variable is not mandatory and specifies the alt speed time begin in HHMM format. it has default value `0`.
+
+### `DOCKALTSPEEDTIMEEND`
+
+This variable is not mandatory and specifies the alt speed time end in HHMM format. it has default value `0`.
+
+### `DOCKALTSPEEDTIMEDAY`
+
+This variable is not mandatory and specifies the alt speed time day as a bitmask (1=Sunday, 2=Monday, 4=Tuesday, 8=Wednesday, 16=Thursday, 32=Friday, 64=Saturday). Sum values for multiple days. it has default value `0`.
+
 ### `DOCKTELEGRAMBOTTOKEN`
 
 This variable is not mandatory and specifices what Telegram Bot Token will be used to send notifications when a torrent is completed.
@@ -175,7 +230,7 @@ This variable is not mandatory and specifices what Telegram Chat ID will be used
 
 * This container is built using [s6-overlay](https://github.com/just-containers/s6-overlay)
 * The docker entrypoint can upgrade operating system at each startup. To enable this feature, just add `-e AUTOUPGRADE=1` at container creation.
-* An helm chart is available of in the [chart folder](https://github.com/digrouz/docker-transmission/tree/master/chart) with an example [value.yaml](https://github.com/digrouz/docker-transmission/tree/master/chart/value.yaml)
+* An helm chart is available of in the [chart folder](https://github.com/digrouz/docker-transmission/tree/master/chart) with an example [value.yaml](https://github.com/digrouz/docker-transmission/tree/master/chart/values.yaml)
 
 ## Issues
 

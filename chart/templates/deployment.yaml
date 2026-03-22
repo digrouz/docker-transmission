@@ -88,6 +88,28 @@ spec:
               value: "{{ .Values.service.antiBruteForceEnabled | default "false" }}"
             - name: DOCKANTIBRUTEFORCETHRESHOLD
               value: "{{ .Values.service.antiBruteForceThreshold | default "100" }}"
+            - name: DOCKSPEEDLIMITDOWNENABLED
+              value: "{{ .Values.service.speedLimitDownEnabled | default "false" }}"
+            - name: DOCKSPEEDLIMITDOWN
+              value: "{{ .Values.service.speedLimitDown | default "100" }}"
+            - name: DOCKSPEEDLIMITUPENABLED
+              value: "{{ .Values.service.speedLimitUpEnabled | default "false" }}"
+            - name: DOCKSPEEDLIMITUP
+              value: "{{ .Values.service.speedLimitUp | default "100" }}"
+            - name: DOCKALTSPEEDENABLED
+              value: "{{ .Values.service.altSpeedEnabled | default "false" }}"
+            - name: DOCKALTSPEEDDOWN
+              value: "{{ .Values.service.altSpeedDown | default "50" }}"
+            - name: DOCKALTSPEEDUP
+              value: "{{ .Values.service.altSpeedUp | default "50" }}"
+            - name: DOCKALTSPEEDTIMEENABLED
+              value: "{{ .Values.service.altSpeedTimeEnabled | default "false" }}"
+            - name: DOCKALTSPEEDTIMEBEGIN
+              value: "{{ .Values.service.altSpeedTimeBegin | default "0" }}"
+            - name: DOCKALTSPEEDTIMEEND
+              value: "{{ .Values.service.altSpeedTimeEnd | default "0" }}"
+            - name: DOCKALTSPEEDTIMEDAY
+              value: "{{ .Values.service.altSpeedTimeDay | default "0" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

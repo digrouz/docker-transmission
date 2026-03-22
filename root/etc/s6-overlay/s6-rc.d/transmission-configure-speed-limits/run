@@ -21,7 +21,7 @@ fi
 
 if [ -n "${DOCKSPEEDLIMITDOWN}" -a "${DOCKSPEEDLIMITDOWN}" != "${SPEED_LIMIT_DOWN}" ]; then
   echo "Setting speed-limit-down to ${DOCKSPEEDLIMITDOWN}"
-  jq '."speed-limit-down" = "'${DOCKSPEEDLIMITDOWN}'"' /config/settings.json | sponge /config/settings.json
+  jq '."speed-limit-down" = '${DOCKSPEEDLIMITDOWN} /config/settings.json | sponge /config/settings.json
 else
   echo "speed-limit-down already set to ${SPEED_LIMIT_DOWN}"
 fi
@@ -35,7 +35,7 @@ fi
 
 if [ -n "${DOCKSPEEDLIMITUP}" -a "${DOCKSPEEDLIMITUP}" != "${SPEED_LIMIT_UP}" ]; then
   echo "Setting speed-limit-up to ${DOCKSPEEDLIMITUP}"
-  jq '."speed-limit-up" = "'${DOCKSPEEDLIMITUP}'"' /config/settings.json | sponge /config/settings.json
+  jq '."speed-limit-up" = '${DOCKSPEEDLIMITUP} /config/settings.json | sponge /config/settings.json
 else
   echo "speed-limit-up already set to ${SPEED_LIMIT_UP}"
 fi
@@ -49,14 +49,14 @@ fi
 
 if [ -n "${DOCKALTSPEEDDOWN}" -a "${DOCKALTSPEEDDOWN}" != "${ALT_SPEED_DOWN}" ]; then
   echo "Setting alt-speed-down to ${DOCKALTSPEEDDOWN}"
-  jq '."alt-speed-down" = "'${DOCKALTSPEEDDOWN}'"' /config/settings.json | sponge /config/settings.json
+  jq '."alt-speed-down" = '${DOCKALTSPEEDDOWN} /config/settings.json | sponge /config/settings.json
 else
   echo "alt-speed-down already set to ${ALT_SPEED_DOWN}"
 fi
 
 if [ -n "${DOCKALTSPEEDUP}" -a "${DOCKALTSPEEDUP}" != "${ALT_SPEED_UP}" ]; then
   echo "Setting alt-speed-up to ${DOCKALTSPEEDUP}"
-  jq '."alt-speed-up" = "'${DOCKALTSPEEDUP}'"' /config/settings.json | sponge /config/settings.json
+  jq '."alt-speed-up" = '${DOCKALTSPEEDUP} /config/settings.json | sponge /config/settings.json
 else
   echo "alt-speed-up already set to ${ALT_SPEED_UP}"
 fi
@@ -70,21 +70,21 @@ fi
 
 if [ -n "${DOCKALTSPEEDTIMEBEGIN}" -a "${DOCKALTSPEEDTIMEBEGIN}" != "${ALT_SPEED_TIME_BEGIN}" ]; then
   echo "Setting alt-speed-time-begin to ${DOCKALTSPEEDTIMEBEGIN}"
-  jq '."alt-speed-time-begin" = "'${DOCKALTSPEEDTIMEBEGIN}'"' /config/settings.json | sponge /config/settings.json
+  jq '."alt-speed-time-begin" = '${DOCKALTSPEEDTIMEBEGIN} /config/settings.json | sponge /config/settings.json
 else
   echo "alt-speed-time-begin already set to ${ALT_SPEED_TIME_BEGIN}"
 fi
 
 if [ -n "${DOCKALTSPEEDTIMEEND}" -a "${DOCKALTSPEEDTIMEEND}" != "${ALT_SPEED_TIME_END}" ]; then
   echo "Setting alt-speed-time-end to ${DOCKALTSPEEDTIMEEND}"
-  jq '."alt-speed-time-end" = "'${DOCKALTSPEEDTIMEEND}'"' /config/settings.json | sponge /config/settings.json
+  jq '."alt-speed-time-end" = '${DOCKALTSPEEDTIMEEND} /config/settings.json | sponge /config/settings.json
 else
   echo "alt-speed-time-end already set to ${ALT_SPEED_TIME_END}"
 fi
 
 if [ -n "${DOCKALTSPEEDTIMEDAY}" -a "${DOCKALTSPEEDTIMEDAY}" != "${ALT_SPEED_TIME_DAY}" ]; then
   echo "Setting alt-speed-time-day to ${DOCKALTSPEEDTIMEDAY}"
-  jq '."alt-speed-time-day" = "'${DOCKALTSPEEDTIMEDAY}'"' /config/settings.json | sponge /config/settings.json
+  jq '."alt-speed-time-day" = '${DOCKALTSPEEDTIMEDAY} /config/settings.json | sponge /config/settings.json
 else
   echo "alt-speed-time-day already set to ${ALT_SPEED_TIME_DAY}"
 fi

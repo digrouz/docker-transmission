@@ -144,6 +144,14 @@ service:
   ## Example: 127 (all days), 62 (weekdays)
   ##
   altSpeedTimeDay: 127
+  ## @param service.peerLimitGlobal Global peer limit
+  ## Example: 200
+  ##
+  peerLimitGlobal: 200
+  ## @param service.peerLimitPerTorrent Per torrent peer limit
+  ## Example: 50
+  ##
+  peerLimitPerTorrent: 50
 ## @section SMTP Configuration
 ##
 smtp:

@@ -1,0 +1,18 @@
+#!/command/with-contenv sh
+
+PEER_LIMIT_GLOBAL=$(jq -r '.["peer-limit-global"]' /config/settings.json)
+PEER_LIMIT_PER_TORRENT=$(jq -r '.["peer-limit-per-torrent"]' /config/settings.json)
+
+if [ -n "${DOCKPEERLIMITGLOBAL}" -a "${DOCKPEERLIMITGLOBAL}" != "${PEER_LIMIT_GLOBAL}" ]; then
+  echo "Setting peer-limit-global to ${DOCKPEERLIMITGLOBAL}"
+  jq '.["peer-limit-global"] = '${DOCKPEERLIMITGLOBAL} /config/settings.json | sponge /config/settings.json
+else
+  echo "peer-limit-global already set to ${PEER_LIMIT_GLOBAL}"
+fi
+
+if [ -n "${DOCKPEERLIMITPERTORRENT}" -a "${DOCKPEERLIMITPERTORRENT}" != "${PEER_LIMIT_PER_TORRENT}" ]; then
+  echo "Setting peer-limit-per-torrent to ${DOCKPEERLIMITPERTORRENT}"
+  jq '.["peer-limit-per-torrent"] = '${DOCKPEERLIMITPERTORRENT} /config/settings.json | sponge /config/settings.json
+else
+  echo "peer-limit-per-torrent already set to ${PEER_LIMIT_PER_TORRENT}"
+fi

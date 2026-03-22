@@ -109,7 +109,11 @@ spec:
             - name: DOCKALTSPEEDTIMEEND
               value: "{{ .Values.service.altSpeedTimeEnd | default "0" }}"
             - name: DOCKALTSPEEDTIMEDAY
-              value: "{{ .Values.service.altSpeedTimeDay | default "0" }}"
+              value: "{{ .Values.service.altSpeedTimeDay | default "0" }}" 
+            - name: DOCKPEERLIMITGLOBAL
+              value: "{{ .Values.service.peerLimitGlobal | default "200" }}"
+            - name: DOCKPEERLIMITPERTORRENT
+              value: "{{ .Values.service.peerLimitPerTorrent | default "50" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

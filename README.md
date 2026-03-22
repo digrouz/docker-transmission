@@ -72,6 +72,8 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKALTSPEEDTIMEBEGIN=<transmission alt speed time begin:540> \
       -e DOCKALTSPEEDTIMEEND=<transmission alt speed time end:1020> \
       -e DOCKALTSPEEDTIMEDAY=<transmission alt speed time day:127> \
+      -e DOCKPEERLIMITGLOBAL=<transmission global peer limit:200> \
+      -e DOCKPEERLIMITPERTORRENT=<transmission per torrent peer limit:50> \
       -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
@@ -217,6 +219,14 @@ This variable is not mandatory and specifies the alt speed time end in minutes f
 ### `DOCKALTSPEEDTIMEDAY`
 
 This variable is not mandatory and specifies the alt speed time day as a bitmask (1=Sunday, 2=Monday, 4=Tuesday, 8=Wednesday, 16=Thursday, 32=Friday, 64=Saturday). Sum values for multiple days. it has default value `127`.
+
+### `DOCKPEERLIMITGLOBAL`
+
+This variable is not mandatory and specifies the global peer limit. it has default value `200`.
+
+### `DOCKPEERLIMITPERTORRENT`
+
+This variable is not mandatory and specifies the per torrent peer limit. it has default value `50`.
 
 ### `DOCKTELEGRAMBOTTOKEN`
 

@@ -59,6 +59,8 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKRPCHOSTWHITELISTENABLED=<transmission rpc host whitelist enabled:false> \
       -e DOCKRPCHOSTWHITELIST=<transmission rpc host whitelist> \
       -e DOCKLPDENABLED=<transmission lpd enabled:false> \
+      -e DOCKANTIBRUTEFORCEENABLED=<transmission anti-brute-force enabled:false> \
+      -e DOCKANTIBRUTEFORCETHRESHOLD=<transmission anti-brute-force threshold:100> \
       -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
@@ -152,6 +154,14 @@ This variable is not mandatory and specifies the host whitelist to be used for R
 ### `DOCKLPDENABLED`
 
 This variable is not mandatory and specifies if lpd is enabled. it has default value `false`.
+
+### `DOCKANTIBRUTEFORCEENABLED`
+
+This variable is not mandatory and specifies if anti-brute-force is enabled. it has default value `false`.
+
+### `DOCKANTIBRUTEFORCETHRESHOLD`
+
+This variable is not mandatory and specifies the anti-brute-force threshold. it has default value `100`.
 
 ### `DOCKTELEGRAMBOTTOKEN`
 

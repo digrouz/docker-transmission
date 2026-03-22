@@ -92,6 +92,14 @@ service:
   ## Example: "true", "false"
   ##
   lpdEnabled: "false"
+  ## @param service.antiBruteForceEnabled Enable or disable anti-brute-force
+  ## Example: "true", "false"
+  ##
+  antiBruteForceEnabled: "false"
+  ## @param service.antiBruteForceThreshold Anti-brute-force threshold
+  ## Example: 100
+  ##
+  antiBruteForceThreshold: 100
 ## @section SMTP Configuration
 ##
 smtp:

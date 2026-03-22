@@ -84,6 +84,10 @@ spec:
               value: "{{ .Values.service.rpchostwhitelist | default "127.0.0.1,::1" }}"
             - name: DOCKLPDENABLED
               value: "{{ .Values.service.lpdEnabled | default "false" }}"
+            - name: DOCKANTIBRUTEFORCEENABLED
+              value: "{{ .Values.service.antiBruteForceEnabled | default "false" }}"
+            - name: DOCKANTIBRUTEFORCETHRESHOLD
+              value: "{{ .Values.service.antiBruteForceThreshold | default "100" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

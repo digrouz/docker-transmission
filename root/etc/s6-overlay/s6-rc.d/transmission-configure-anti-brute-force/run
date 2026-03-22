@@ -1,0 +1,18 @@
+#!/command/with-contenv sh
+
+ANTI_BRUTE_FORCE_ENABLED=$(jq -r '.["anti-brute-force-enabled"]' /config/settings.json)
+ANTI_BRUTE_FORCE_THRESHOLD=$(jq -r '.["anti-brute-force-threshold"]' /config/settings.json)
+
+if [ -n "${DOCKANTIBRUTEFORCEENABLED}" -a "${DOCKANTIBRUTEFORCEENABLED}" != "${ANTI_BRUTE_FORCE_ENABLED}" ]; then
+  echo "Setting anti-brute-force-enabled to ${DOCKANTIBRUTEFORCEENABLED}"
+  jq '."anti-brute-force-enabled" = "'${DOCKANTIBRUTEFORCEENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "anti-brute-force-enabled already set to ${ANTI_BRUTE_FORCE_ENABLED}"
+fi
+
+if [ -n "${DOCKANTIBRUTEFORCETHRESHOLD}" -a "${DOCKANTIBRUTEFORCETHRESHOLD}" != "${ANTI_BRUTE_FORCE_THRESHOLD}" ]; then
+  echo "Setting anti-brute-force-threshold to ${DOCKANTIBRUTEFORCETHRESHOLD}"
+  jq '."anti-brute-force-threshold" = "'${DOCKANTIBRUTEFORCETHRESHOLD}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "anti-brute-force-threshold already set to ${ANTI_BRUTE_FORCE_THRESHOLD}"
+fi

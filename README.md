@@ -69,9 +69,9 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKALTSPEEDDOWN=<transmission alt speed down:50> \
       -e DOCKALTSPEEDUP=<transmission alt speed up:50> \
       -e DOCKALTSPEEDTIMEENABLED=<transmission alt speed time enabled:false> \
-      -e DOCKALTSPEEDTIMEBEGIN=<transmission alt speed time begin:0> \
-      -e DOCKALTSPEEDTIMEEND=<transmission alt speed time end:0> \
-      -e DOCKALTSPEEDTIMEDAY=<transmission alt speed time day:0> \
+      -e DOCKALTSPEEDTIMEBEGIN=<transmission alt speed time begin:540> \
+      -e DOCKALTSPEEDTIMEEND=<transmission alt speed time end:1020> \
+      -e DOCKALTSPEEDTIMEDAY=<transmission alt speed time day:127> \
       -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
@@ -208,15 +208,15 @@ This variable is not mandatory and specifies if alt speed time is enabled. it ha
 
 ### `DOCKALTSPEEDTIMEBEGIN`
 
-This variable is not mandatory and specifies the alt speed time begin in HHMM format. it has default value `0`.
+This variable is not mandatory and specifies the alt speed time begin in minutes from midnight. it has default value `540`.
 
 ### `DOCKALTSPEEDTIMEEND`
 
-This variable is not mandatory and specifies the alt speed time end in HHMM format. it has default value `0`.
+This variable is not mandatory and specifies the alt speed time end in minutes from midnight. it has default value `1020`.
 
 ### `DOCKALTSPEEDTIMEDAY`
 
-This variable is not mandatory and specifies the alt speed time day as a bitmask (1=Sunday, 2=Monday, 4=Tuesday, 8=Wednesday, 16=Thursday, 32=Friday, 64=Saturday). Sum values for multiple days. it has default value `0`.
+This variable is not mandatory and specifies the alt speed time day as a bitmask (1=Sunday, 2=Monday, 4=Tuesday, 8=Wednesday, 16=Thursday, 32=Friday, 64=Saturday). Sum values for multiple days. it has default value `127`.
 
 ### `DOCKTELEGRAMBOTTOKEN`
 

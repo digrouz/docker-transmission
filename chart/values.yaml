@@ -132,18 +132,18 @@ service:
   ## Example: "true", "false"
   ##
   altSpeedTimeEnabled: "false"
-  ## @param service.altSpeedTimeBegin Alt speed time begin (HHMM format)
-  ## Example: 0930
+  ## @param service.altSpeedTimeBegin Alt speed time begin (in minutes from midnight)
+  ## Example: 540
   ##
   altSpeedTimeBegin: 0
-  ## @param service.altSpeedTimeEnd Alt speed time end (HHMM format)
-  ## Example: 1630
+  ## @param service.altSpeedTimeEnd Alt speed time end (in minutes from midnight)
+  ## Example: 1020
   ##
   altSpeedTimeEnd: 0
   ## @param service.altSpeedTimeDay Alt speed time day (bitmask: 1=Sun, 2=Mon, 4=Tue, 8=Wed, 16=Thu, 32=Fri, 64=Sat)
   ## Example: 127 (all days), 62 (weekdays)
   ##
-  altSpeedTimeDay: 0
+  altSpeedTimeDay: 127
 ## @section SMTP Configuration
 ##
 smtp:

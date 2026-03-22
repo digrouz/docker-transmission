@@ -48,6 +48,17 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKMAILDOMAIN=<originating mail domain> \
       -e DOCKTELEGRAMBOTTOKEN=<Telegram bot token> \
       -e DOCKTELEGRAMCHATID=<Telegram chat id> \
+      -e DOCKRPCENABLED=<transmission rpc enabled:true> \
+      -e DOCKRPCPORT=<transmission rpc port:9092> \
+      -e DOCKRPCBINDADDRESS=<transmission rpc bind address:0.0.0.0> \
+      -e DOCKRPCAUTHENTICATIONREQUIRED=<transmission rpc authentication required:true> \
+      -e DOCKRPCUSERNAME=<transmission rpc username> \
+      -e DOCKRPCPASSWORD=<transmission rpc password> \
+      -e DOCKRPCWHITELISTENABLED=<transmission rpc whitelist enabled:false> \
+      -e DOCKRPCWHITELIST=<transmission rpc whitelist:127.0.0.1,::1> \
+      -e DOCKRPCHOSTWHITELISTENABLED=<transmission rpc host whitelist enabled:false> \
+      -e DOCKRPCHOSTWHITELIST=<transmission rpc host whitelist> \
+      -e DOCKLPDENABLED=<transmission lpd enabled:false> \
       -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
@@ -94,6 +105,54 @@ This variable is not mandatory and specifies which umask Transmission is using f
 
 This variable is not mandatory and specifies if IP blocklist are active Transmission. it has default value `false`.
 
+### `DOCKBLOCKLISTURL`
+
+This variable is not mandatory and specifies the URL to be used for blocklist.
+
+### `DOCKRPCENABLED`
+
+This variable is not mandatory and specifies if RPC is enabled. it has default value `true`.
+
+### `DOCKRPCPORT`
+
+This variable is not mandatory and specifies the port to be used for RPC. it has default value `9092`.
+
+### `DOCKRPCBINDADDRESS`
+
+This variable is not mandatory and specifies the bind address to be used for RPC. it has default value `0.0.0.0`.
+
+### `DOCKRPCAUTHENTICATIONREQUIRED`
+
+This variable is not mandatory and specifies if RPC authentication is required. it has default value `true`.
+
+### `DOCKRPCUSERNAME`
+
+This variable is not mandatory and specifies the username to be used for RPC.
+
+### `DOCKRPCPASSWORD`
+
+This variable is not mandatory and specifies the password to be used for RPC.
+
+### `DOCKRPCWHITELISTENABLED`
+
+This variable is not mandatory and specifies if RPC whitelist is enabled. it has default value `false`.
+
+### `DOCKRPCWHITELIST`
+
+This variable is not mandatory and specifies the whitelist to be used for RPC. it has default value `127.0.0.1,::1`.
+
+### `DOCKRPCHOSTWHITELISTENABLED`
+
+This variable is not mandatory and specifies if RPC host whitelist is enabled. it has default value `false`.
+
+### `DOCKRPCHOSTWHITELIST`
+
+This variable is not mandatory and specifies the host whitelist to be used for RPC.
+
+### `DOCKLPDENABLED`
+
+This variable is not mandatory and specifies if lpd is enabled. it has default value `false`.
+
 ### `DOCKTELEGRAMBOTTOKEN`
 
 This variable is not mandatory and specifices what Telegram Bot Token will be used to send notifications when a torrent is completed.
@@ -101,10 +160,6 @@ This variable is not mandatory and specifices what Telegram Bot Token will be us
 ### `DOCKTELEGRAMCHATID`
 
 This variable is not mandatory and specifices what Telegram Chat ID will be used to send notifications when a torrent is completed.
-
-### `DOCKUPGRADE`
-
-This variable is not mandatory and specifies if the container has to launch software update at startup or not. Valid values are `0` and `1`. It has default value `0`.
 
 ## Notes
 

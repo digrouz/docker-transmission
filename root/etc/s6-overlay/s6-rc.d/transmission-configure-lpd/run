@@ -1,0 +1,10 @@
+#!/command/with-contenv sh
+
+LPD_ENABLED=$(jq -r '.["lpd-enabled"]' /config/settings.json)
+
+if [ -n "${DOCKLPDENABLED}" -a "${DOCKLPDENABLED}" != "${LPD_ENABLED}" ]; then
+  echo "Setting lpd-enabled to ${DOCKLPDENABLED}"
+  jq '."lpd-enabled" = "'${DOCKLPDENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "lpd-enabled already set to ${LPD_ENABLED}"
+fi

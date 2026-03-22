@@ -88,6 +88,10 @@ service:
   ## @param service.rpchostwhitelist RPC whitelist allowed for transmission
   ## Example: ""
   rpchostwhitelist: ""
+  ## @param service.lpdEnabled Enable or disable lpd
+  ## Example: "true", "false"
+  ##
+  lpdEnabled: "false"
 ## @section SMTP Configuration
 ##
 smtp:

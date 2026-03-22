@@ -82,6 +82,8 @@ spec:
               value: "{{ .Values.service.rpchostwhitelistenabled | default "false" }}"
             - name: DOCKRPCHOSTWHITELIST
               value: "{{ .Values.service.rpchostwhitelist | default "127.0.0.1,::1" }}"
+            - name: DOCKLPDENABLED
+              value: "{{ .Values.service.lpdEnabled | default "false" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

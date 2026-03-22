@@ -74,6 +74,10 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKALTSPEEDTIMEDAY=<transmission alt speed time day:127> \
       -e DOCKPEERLIMITGLOBAL=<transmission global peer limit:200> \
       -e DOCKPEERLIMITPERTORRENT=<transmission per torrent peer limit:50> \
+      -e DOCKRATIOLIMIT=<transmission ratio limit:2> \
+      -e DOCKRATIOLIMITENABLED=<transmission ratio limit enabled:false> \
+      -e DOCKQUEUESTALLEDMINUTES=<transmission queue stalled minutes:30> \
+      -e DOCKQUEUESTALLEDENABLED=<transmission queue stalled enabled:true> \
       -p 9092:9092/udp  digrouz/transmission
 
 ## Environment Variables
@@ -227,6 +231,22 @@ This variable is not mandatory and specifies the global peer limit. it has defau
 ### `DOCKPEERLIMITPERTORRENT`
 
 This variable is not mandatory and specifies the per torrent peer limit. it has default value `50`.
+
+### `DOCKRATIOLIMIT`
+
+This variable is not mandatory and specifies the ratio limit. it has default value `2`.
+
+### `DOCKRATIOLIMITENABLED`
+
+This variable is not mandatory and specifies if ratio limit is enabled. it has default value `false`.
+
+### `DOCKQUEUESTALLEDMINUTES`
+
+This variable is not mandatory and specifies the queue stalled minutes. it has default value `30`.
+
+### `DOCKQUEUESTALLEDENABLED`
+
+This variable is not mandatory and specifies if queue stalled is enabled. it has default value `true`.
 
 ### `DOCKTELEGRAMBOTTOKEN`
 

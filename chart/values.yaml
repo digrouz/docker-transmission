@@ -152,6 +152,22 @@ service:
   ## Example: 50
   ##
   peerLimitPerTorrent: 50
+  ## @param service.ratioLimit Ratio limit
+  ## Example: 2
+  ##
+  ratioLimit: 2
+  ## @param service.ratioLimitEnabled Enable or disable ratio limit
+  ## Example: "true", "false"
+  ##
+  ratioLimitEnabled: "false"
+  ## @param service.queueStalledMinutes Queue stalled minutes
+  ## Example: 30
+  ##
+  queueStalledMinutes: 30
+  ## @param service.queueStalledEnabled Enable or disable queue stalled
+  ## Example: "true", "false"
+  ##
+  queueStalledEnabled: "true"
 ## @section SMTP Configuration
 ##
 smtp:

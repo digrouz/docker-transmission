@@ -1,0 +1,34 @@
+#!/command/with-contenv sh
+
+RATIO_LIMIT=$(jq -r '.["ratio-limit"]' /config/settings.json)
+RATIO_LIMIT_ENABLED=$(jq -r '.["ratio-limit-enabled"]' /config/settings.json)
+QUEUE_STALLED_MINUTES=$(jq -r '.["queue-stalled-minutes"]' /config/settings.json)
+QUEUE_STALLED_ENABLED=$(jq -r '.["queue-stalled-enabled"]' /config/settings.json)
+
+if [ -n "${DOCKRATIOLIMIT}" -a "${DOCKRATIOLIMIT}" != "${RATIO_LIMIT}" ]; then
+  echo "Setting ratio-limit to ${DOCKRATIOLIMIT}"
+  jq '.["ratio-limit"] = '${DOCKRATIOLIMIT}'' /config/settings.json | sponge /config/settings.json
+else
+  echo "ratio-limit already set to ${RATIO_LIMIT}"
+fi
+
+if [ -n "${DOCKRATIOLIMITENABLED}" -a "${DOCKRATIOLIMITENABLED}" != "${RATIO_LIMIT_ENABLED}" ]; then
+  echo "Setting ratio-limit-enabled to ${DOCKRATIOLIMITENABLED}"
+  jq '.["ratio-limit-enabled"] = "'${DOCKRATIOLIMITENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "ratio-limit-enabled already set to ${RATIO_LIMIT_ENABLED}"
+fi
+
+if [ -n "${DOCKQUEUESTALLEDMINUTES}" -a "${DOCKQUEUESTALLEDMINUTES}" != "${QUEUE_STALLED_MINUTES}" ]; then
+  echo "Setting queue-stalled-minutes to ${DOCKQUEUESTALLEDMINUTES}"
+  jq '.["queue-stalled-minutes"] = '${DOCKQUEUESTALLEDMINUTES}'' /config/settings.json | sponge /config/settings.json
+else
+  echo "queue-stalled-minutes already set to ${QUEUE_STALLED_MINUTES}"
+fi
+
+if [ -n "${DOCKQUEUESTALLEDENABLED}" -a "${DOCKQUEUESTALLEDENABLED}" != "${QUEUE_STALLED_ENABLED}" ]; then
+  echo "Setting queue-stalled-enabled to ${DOCKQUEUESTALLEDENABLED}"
+  jq '.["queue-stalled-enabled"] = "'${DOCKQUEUESTALLEDENABLED}'"' /config/settings.json | sponge /config/settings.json
+else
+  echo "queue-stalled-enabled already set to ${QUEUE_STALLED_ENABLED}"
+fi

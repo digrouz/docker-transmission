@@ -114,6 +114,14 @@ spec:
               value: "{{ .Values.service.peerLimitGlobal | default "200" }}"
             - name: DOCKPEERLIMITPERTORRENT
               value: "{{ .Values.service.peerLimitPerTorrent | default "50" }}"
+            - name: DOCKRATIOLIMIT
+              value: "{{ .Values.service.ratioLimit | default "2" }}"
+            - name: DOCKRATIOLIMITENABLED
+              value: "{{ .Values.service.ratioLimitEnabled | default "false" }}"
+            - name: DOCKQUEUESTALLEDMINUTES
+              value: "{{ .Values.service.queueStalledMinutes | default "30" }}"
+            - name: DOCKQUEUESTALLEDENABLED
+              value: "{{ .Values.service.queueStalledEnabled | default "true" }}"
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}

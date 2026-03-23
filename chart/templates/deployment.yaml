@@ -118,6 +118,10 @@ spec:
               value: "{{ .Values.service.ratioLimit | default "2" }}"
             - name: DOCKRATIOLIMITENABLED
               value: "{{ .Values.service.ratioLimitEnabled | default "false" }}"
+            - name: DOCKIDLESEEDINGLIMIT
+              value: "{{ .Values.service.idleSeedingLimit | default "30" }}"
+            - name: DOCKIDLESEEDINGLIMITENABLED
+              value: "{{ .Values.service.idleSeedingLimitEnabled | default "false" }}"
             - name: DOCKQUEUESTALLEDMINUTES
               value: "{{ .Values.service.queueStalledMinutes | default "30" }}"
             - name: DOCKQUEUESTALLEDENABLED

@@ -160,6 +160,14 @@ service:
   ## Example: "true", "false"
   ##
   ratioLimitEnabled: "false"
+  ## @param service.idleSeedingLimit Idle seeding limit
+  ## Example: 30
+  ##
+  idleSeedingLimit: 30
+  ## @param service.idleSeedingLimitEnabled Enable or disable idle seeding limit
+  ## Example: "true", "false"
+  ##
+  idleSeedingLimitEnabled: "false"
   ## @param service.queueStalledMinutes Queue stalled minutes
   ## Example: 30
   ##

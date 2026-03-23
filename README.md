@@ -76,6 +76,8 @@ Transmission is a cross-platform BitTorrent client that is:
       -e DOCKPEERLIMITPERTORRENT=<transmission per torrent peer limit:50> \
       -e DOCKRATIOLIMIT=<transmission ratio limit:2> \
       -e DOCKRATIOLIMITENABLED=<transmission ratio limit enabled:false> \
+      -e DOCKIDLESEEDINGLIMIT=<transmission idle seeding limit:30> \
+      -e DOCKIDLESEEDINGLIMITENABLED=<transmission idle seeding limit enabled:false> \
       -e DOCKQUEUESTALLEDMINUTES=<transmission queue stalled minutes:30> \
       -e DOCKQUEUESTALLEDENABLED=<transmission queue stalled enabled:true> \
       -p 9092:9092/udp  digrouz/transmission
@@ -239,6 +241,14 @@ This variable is not mandatory and specifies the ratio limit. it has default val
 ### `DOCKRATIOLIMITENABLED`
 
 This variable is not mandatory and specifies if ratio limit is enabled. it has default value `false`.
+
+### `DOCKIDLESEEDINGLIMIT`
+
+This variable is not mandatory and specifies the idle seeding limit. it has default value `30`.
+
+### `DOCKIDLESEEDINGLIMITENABLED`
+
+This variable is not mandatory and specifies if idle seeding limit is enabled. it has default value `false`.
 
 ### `DOCKQUEUESTALLEDMINUTES`
 

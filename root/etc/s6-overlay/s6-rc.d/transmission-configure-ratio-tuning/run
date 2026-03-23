@@ -9,7 +9,7 @@ IDLE_SEEDING_LIMIT_ENABLED=$(jq -r '.["idle-seeding-limit-enabled"]' /config/set
 
 if [ -n "${DOCKRATIOLIMIT}" -a "${DOCKRATIOLIMIT}" != "${RATIO_LIMIT}" ]; then
   echo "Setting ratio-limit to ${DOCKRATIOLIMIT}"
-  jq '.["ratio-limit"] = '${DOCKRATIOLIMIT}'' /config/settings.json | sponge /config/settings.json
+  jq '.["ratio-limit"] = '${DOCKRATIOLIMIT} /config/settings.json | sponge /config/settings.json
 else
   echo "ratio-limit already set to ${RATIO_LIMIT}"
 fi
@@ -23,7 +23,7 @@ fi
 
 if [ -n "${DOCKQUEUESTALLEDMINUTES}" -a "${DOCKQUEUESTALLEDMINUTES}" != "${QUEUE_STALLED_MINUTES}" ]; then
   echo "Setting queue-stalled-minutes to ${DOCKQUEUESTALLEDMINUTES}"
-  jq '.["queue-stalled-minutes"] = '${DOCKQUEUESTALLEDMINUTES}'' /config/settings.json | sponge /config/settings.json
+  jq '.["queue-stalled-minutes"] = '${DOCKQUEUESTALLEDMINUTES} /config/settings.json | sponge /config/settings.json
 else
   echo "queue-stalled-minutes already set to ${QUEUE_STALLED_MINUTES}"
 fi
@@ -37,7 +37,7 @@ fi
 
 if [ -n "${DOCKIDLESEEDINGLIMIT}" -a "${DOCKIDLESEEDINGLIMIT}" != "${IDLE_SEEDING_LIMIT}" ]; then
   echo "Setting idle-seeding-limit to ${DOCKIDLESEEDINGLIMIT}"
-  jq '.["idle-seeding-limit"] = '${DOCKIDLESEEDINGLIMIT}'' /config/settings.json | sponge /config/settings.json
+  jq '.["idle-seeding-limit"] = '${DOCKIDLESEEDINGLIMIT} /config/settings.json | sponge /config/settings.json
 else
   echo "idle-seeding-limit already set to ${IDLE_SEEDING_LIMIT}"
 fi

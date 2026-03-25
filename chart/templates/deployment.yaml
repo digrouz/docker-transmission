@@ -1,4 +1,6 @@
 ---
+# This Helm chart deploys Transmission.
+# Prerequisites: configure values in values.yaml, including SMTP settings and optional blocklist URLs.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -35,31 +37,31 @@ spec:
 {{- end }}
           env:
             - name: GID
-              value: "{{ .Values.service.gid }}"
+              value: '{{ .Values.service.gid }}'
             - name: UID
-              value: "{{ .Values.service.uid }}"
+              value: '{{ .Values.service.uid }}'
             - name: TZ
-              value: "{{ .Values.service.tz }}"
+              value: '{{ .Values.service.tz }}'
             - name: AUTOUPGRADE
-              value: "{{ .Values.service.autoupgrade }}"
+              value: '{{ .Values.service.autoupgrade }}'
             - name: DOCKNOTIFTYPE
-              value: "{{ .Values.service.notiftype }}"
+              value: '{{ .Values.service.notiftype }}'
             - name: DOCKRELAY
-              value: "{{ .Values.smtp.host }}"
+              value: '{{ .Values.smtp.host }}'
             - name: DOCKMAIL
-              value: "{{ .Values.smtp.to }}"
+              value: '{{ .Values.smtp.to }}'
             - name: DOCKMAILDOMAIN
-              value: "{{ .Values.smtp.domain }}"
+              value: '{{ .Values.smtp.domain }}'
             - name: DOCKUMASK
-              value: "{{ .Values.service.umask | default "002" }}"
+              value: '{{ .Values.service.umask | default "002" }}'
             - name: DOCKBLOCKLISTENABLED
-              value: "{{ .Values.service.blocklistenabled | default "false" }}"
+              value: '{{ .Values.service.blocklistenabled | default "false" }}'
             - name: DOCKBLOCKLISTURL
-              value: "{{ .Values.service.blocklisturl | default "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz" }}"
+              value: '{{ .Values.service.blocklisturl | default "http://list.iblocklist.org/?list=bt_level1&fileformat=p2p&archiveformat=gz" }}'
             - name: DOCKRPCENABLED
-              value: "{{ .Values.service.rpcenabled | default "true" }}"
+              value: '{{ .Values.service.rpcenabled | default "true" }}'
             - name: DOCKRPCAUTHENTICATIONREQUIRED
-              value: "{{ .Values.service.rpcauthenticationrequired | default "true" }}"
+              value: '{{ .Values.service.rpcauthenticationrequired | default "true" }}'
             - name: DOCKRPCUSERNAME
               valueFrom:
                 secretKeyRef:
@@ -71,61 +73,61 @@ spec:
                   name: {{ .Release.Name }}-rpc-secret
                   key: rpc-password
             - name: DOCKRPCPORT
-              value: "{{ .Values.service.rpcport | default "9092" }}"
+              value: '{{ .Values.service.rpcport | default "9092" }}'
             - name: DOCKRPCBINDADDRESS
-              value: "{{ .Values.service.rpcbindaddress | default "0.0.0.0" }}"
+              value: '{{ .Values.service.rpcbindaddress | default "0.0.0.0" }}'
             - name: DOCKRPCWHITELISTENABLED
-              value: "{{ .Values.service.rpcwhitelistenabled | default "false" }}"
+              value: '{{ .Values.service.rpcwhitelistenabled | default "false" }}'
             - name: DOCKRPCWHITELIST
-              value: "{{ .Values.service.rpcwhitelist | default "127.0.0.1,::1" }}"
+              value: '{{ .Values.service.rpcwhitelist | default "127.0.0.1,::1" }}'
             - name: DOCKRPCHOSTWHITELISTENABLED
-              value: "{{ .Values.service.rpchostwhitelistenabled | default "false" }}"
+              value: '{{ .Values.service.rpchostwhitelistenabled | default "false" }}'
             - name: DOCKRPCHOSTWHITELIST
-              value: "{{ .Values.service.rpchostwhitelist | default "127.0.0.1,::1" }}"
+              value: '{{ .Values.service.rpchostwhitelist | default "127.0.0.1,::1" }}'
             - name: DOCKLPDENABLED
-              value: "{{ .Values.service.lpdEnabled | default "false" }}"
+              value: '{{ .Values.service.lpdEnabled | default "false" }}'
             - name: DOCKANTIBRUTEFORCEENABLED
-              value: "{{ .Values.service.antiBruteForceEnabled | default "false" }}"
+              value: '{{ .Values.service.antiBruteForceEnabled | default "false" }}'
             - name: DOCKANTIBRUTEFORCETHRESHOLD
-              value: "{{ .Values.service.antiBruteForceThreshold | default "100" }}"
+              value: '{{ .Values.service.antiBruteForceThreshold | default "100" }}'
             - name: DOCKSPEEDLIMITDOWNENABLED
-              value: "{{ .Values.service.speedLimitDownEnabled | default "false" }}"
+              value: '{{ .Values.service.speedLimitDownEnabled | default "false" }}'
             - name: DOCKSPEEDLIMITDOWN
-              value: "{{ .Values.service.speedLimitDown | default "100" }}"
+              value: '{{ .Values.service.speedLimitDown | default "100" }}'
             - name: DOCKSPEEDLIMITUPENABLED
-              value: "{{ .Values.service.speedLimitUpEnabled | default "false" }}"
+              value: '{{ .Values.service.speedLimitUpEnabled | default "false" }}'
             - name: DOCKSPEEDLIMITUP
-              value: "{{ .Values.service.speedLimitUp | default "100" }}"
+              value: '{{ .Values.service.speedLimitUp | default "100" }}'
             - name: DOCKALTSPEEDENABLED
-              value: "{{ .Values.service.altSpeedEnabled | default "false" }}"
+              value: '{{ .Values.service.altSpeedEnabled | default "false" }}'
             - name: DOCKALTSPEEDDOWN
-              value: "{{ .Values.service.altSpeedDown | default "50" }}"
+              value: '{{ .Values.service.altSpeedDown | default "50" }}'
             - name: DOCKALTSPEEDUP
-              value: "{{ .Values.service.altSpeedUp | default "50" }}"
+              value: '{{ .Values.service.altSpeedUp | default "50" }}'
             - name: DOCKALTSPEEDTIMEENABLED
-              value: "{{ .Values.service.altSpeedTimeEnabled | default "false" }}"
+              value: '{{ .Values.service.altSpeedTimeEnabled | default "false" }}'
             - name: DOCKALTSPEEDTIMEBEGIN
-              value: "{{ .Values.service.altSpeedTimeBegin | default "0" }}"
+              value: '{{ .Values.service.altSpeedTimeBegin | default "0" }}'
             - name: DOCKALTSPEEDTIMEEND
-              value: "{{ .Values.service.altSpeedTimeEnd | default "0" }}"
+              value: '{{ .Values.service.altSpeedTimeEnd | default "0" }}'
             - name: DOCKALTSPEEDTIMEDAY
-              value: "{{ .Values.service.altSpeedTimeDay | default "0" }}" 
+              value: '{{ .Values.service.altSpeedTimeDay | default "0" }}'
             - name: DOCKPEERLIMITGLOBAL
-              value: "{{ .Values.service.peerLimitGlobal | default "200" }}"
+              value: '{{ .Values.service.peerLimitGlobal | default "200" }}'
             - name: DOCKPEERLIMITPERTORRENT
-              value: "{{ .Values.service.peerLimitPerTorrent | default "50" }}"
+              value: '{{ .Values.service.peerLimitPerTorrent | default "50" }}'
             - name: DOCKRATIOLIMIT
-              value: "{{ .Values.service.ratioLimit | default "2" }}"
+              value: '{{ .Values.service.ratioLimit | default "2" }}'
             - name: DOCKRATIOLIMITENABLED
-              value: "{{ .Values.service.ratioLimitEnabled | default "false" }}"
+              value: '{{ .Values.service.ratioLimitEnabled | default "false" }}'
             - name: DOCKIDLESEEDINGLIMIT
-              value: "{{ .Values.service.idleSeedingLimit | default "30" }}"
+              value: '{{ .Values.service.idleSeedingLimit | default "30" }}'
             - name: DOCKIDLESEEDINGLIMITENABLED
-              value: "{{ .Values.service.idleSeedingLimitEnabled | default "false" }}"
+              value: '{{ .Values.service.idleSeedingLimitEnabled | default "false" }}'
             - name: DOCKQUEUESTALLEDMINUTES
-              value: "{{ .Values.service.queueStalledMinutes | default "30" }}"
+              value: '{{ .Values.service.queueStalledMinutes | default "30" }}'
             - name: DOCKQUEUESTALLEDENABLED
-              value: "{{ .Values.service.queueStalledEnabled | default "true" }}"
+              value: '{{ .Values.service.queueStalledEnabled | default "true" }}'
       volumes:
         - name: transmission-config
           {{- if eq .Values.persistence.config.type "pvc" }}
@@ -136,7 +138,7 @@ spec:
             server: {{ .Values.persistence.config.nfs.server }}
             path: {{ .Values.persistence.config.nfs.path }}
           {{- else }}
-          emptyDir: { }
+          emptyDir: {}
           {{- end }}
         - name: transmission-downloads
           {{- if eq .Values.persistence.downloads.type "pvc" }}
@@ -147,7 +149,7 @@ spec:
             server: {{ .Values.persistence.downloads.nfs.server }}
             path: {{ .Values.persistence.downloads.nfs.path }}
           {{- else }}
-          emptyDir: { }
+          emptyDir: {}
           {{- end }}
         - name: transmission-watch
           {{- if eq .Values.persistence.watch.type "pvc" }}
@@ -158,7 +160,7 @@ spec:
             server: {{ .Values.persistence.watch.nfs.server }}
             path: {{ .Values.persistence.watch.nfs.path }}
           {{- else }}
-          emptyDir: { }
+          emptyDir: {}
           {{- end }}
 {{- if .Values.persistence.extraVolumes }}
 {{- toYaml .Values.persistence.extraVolumes | nindent 8 }}

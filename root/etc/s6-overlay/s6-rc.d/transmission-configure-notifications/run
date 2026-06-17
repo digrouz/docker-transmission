@@ -11,9 +11,9 @@ if [ "${NOTIFICATION_TYPE}" == "mail" -o "${NOTIFICATION_TYPE}" == "telegram" ];
   fi
   if [ "${NOTIFICATION_TYPE}" == "telegram" ]; then
     if [ ${DOCKTELEGRAMBOTTOKEN} ]; then
-      sed -i "s|BOT_TOKEN=.*|BOT_TOKEN=\"${DOCKTELEGRAMBOTTOKEN}\"|i" /usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh
+      sed -i "s|^BOT_TOKEN=.*|BOT_TOKEN=\"${DOCKTELEGRAMBOTTOKEN}\"|i" /usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh
       if [ ${DOCKTELEGRAMCHATID} ]; then
-        sed -i "s|CHAT_ID=.*|CHAT_ID=\"${DOCKTELEGRAMCHATID}\"|i" /usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh
+        sed -i "s|^CHAT_ID=.*|CHAT_ID=\"${DOCKTELEGRAMCHATID}\"|i" /usr/local/bin/transmission-${NOTIFICATION_TYPE}-notification.sh
       else
         echo "Telegram chat id missing."
       fi

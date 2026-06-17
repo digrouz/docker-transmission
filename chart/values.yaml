@@ -190,6 +190,15 @@ smtp:
   ## Example: domain.com
   ##
   domain: ""
+## @section Telegram Configuration
+##
+telegram:
+  ## @param telegram.chatId Telegram Chat ID
+  ##
+  chatId: ""
+  ## @param telegram.botToken Telegram Bot Token
+  ##
+  botToken: ""
 ## @section Ingress Configuration
 ##
 ingress:

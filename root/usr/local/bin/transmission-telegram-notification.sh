@@ -8,7 +8,7 @@ CHAT_ID="TELEGRAMCHATID"
 
 # Notification message
 # If you need a line break, use "%0A" instead of "\n".
-MESSAGE="✅ <strong>Download Completed</strong>%0A- ${TR_TORRENT_NAME}%0A"
+MESSAGE="Transmission:%0A✅ <strong>Download Completed</strong>%0A- ${TR_TORRENT_NAME}%0A"
 
 # Prepares the request url
 TG_WEBHOOK_URL="https://api.telegram.org/bot${BOT_TOKEN}/sendMessage"

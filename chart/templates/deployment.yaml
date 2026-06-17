@@ -52,6 +52,10 @@ spec:
               value: '{{ .Values.smtp.to }}'
             - name: DOCKMAILDOMAIN
               value: '{{ .Values.smtp.domain }}'
+            - name: DOCKTELEGRAMCHATID
+              value: '{{ .Values.telegram.chatId }}'
+            - name: DOCKTELEGRAMBOTTOKEN
+              value: '{{ .Values.telegram.botToken }}'
             - name: DOCKUMASK
               value: '{{ .Values.service.umask | default "002" }}'
             - name: DOCKBLOCKLISTENABLED
